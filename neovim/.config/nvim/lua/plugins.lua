@@ -3,11 +3,11 @@ return require('packer').startup(function(use)
 
     --Install all color themes
     require('plugins.themes')(use)
-    
+ 
     --Dashboard
     use {
         'goolord/alpha-nvim',
-        config = function() 
+        config = function()
             require('plugins.dashboard').setup()
         end
     }
@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
     use {
         'norcalli/nvim-colorizer.lua',
         ft = { 'rust', 'css', 'html' },
-        config = function() 
+        config = function()
             require('colorizer').setup({
                 'rust';
                 'css';
@@ -44,7 +44,7 @@ return require('packer').startup(function(use)
     use {
         'kyazdani42/nvim-tree.lua',
         config = function()
-            vim.g.nvim_tree_respect_buf_cwd = 1
+            --vim.g.nvim_tree_respect_buf_cwd = 1
             require('nvim-tree').setup({
                 disable_netrw = false,
                 hijack_netrw = true,
