@@ -1,0 +1,12 @@
+configuration {
+    modes: [ run ];
+    
+}
+
+@theme "Arc-Dark"
+
+element {
+  orientation: horizontal;
+  children: [ element-text, element-icon ];
+  spacing: 5px;
+}
