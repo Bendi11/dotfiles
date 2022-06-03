@@ -1,6 +1,7 @@
 theme = "dracula"
+#icons = "awesome5"
 icons = "material-nf"
-icons_format = " <span font_family='FiraCode Nerd Font Mono'>{icon}</span> "
+#icons_format = " <span font_family='FiraCode Nerd Font Mono'>{icon}</span> "
 
 
 [[block]]
@@ -32,6 +33,7 @@ block = "networkmanager"
 on_click = "alacritty -e nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
+device_format = "{icon}{ap}"
 
 [[block]]
 block = "time"

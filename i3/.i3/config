@@ -329,7 +329,9 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-    font pango:FiraCode Nerd Font Mono 14
+    #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+    font pango:Font Awesome 5 Free Regular,FiraCode Nerd Font Mono 16
+    #font pango:FiraCode Nerd Font Mono 14
 	i3bar_command i3bar
 	status_command i3status-rs $HOME/.config/i3status-rust/config.toml
 	position top
