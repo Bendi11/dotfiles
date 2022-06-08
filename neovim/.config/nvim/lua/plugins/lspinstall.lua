@@ -32,6 +32,8 @@ lsp_installer.on_server_ready(function(server)
                 inlay_hints = {
                     show_parameter_hints = false,
                     other_hints_prefix = '⇒ ',
+                    max_len_align = true,
+                    max_len_align_padding = 3,
                 },
             },
         }
@@ -49,7 +51,7 @@ end)
 local lsp_installer_servers = require("nvim-lsp-installer.servers")
 
 --Ensure a specific Language Server is installed
-function install_lsp(name)
+local function install_lsp(name)
     local ok, requested_server = lsp_installer_servers.get_server(name)
     if ok then
         if not requested_server:is_installed() then
