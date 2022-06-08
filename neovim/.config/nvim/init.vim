@@ -36,7 +36,7 @@ EOF
 
 filetype plugin indent on "Enable automatic indenting based on file type
 
-autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
+"autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
 autocmd BufWritePre * set fileformat=unix
 "Control + n to open / close the file tree
 nnoremap <silent> <C-n> :NvimTreeToggle<CR>
