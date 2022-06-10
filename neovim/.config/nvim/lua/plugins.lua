@@ -68,6 +68,7 @@ return require('packer').startup(function(use)
             'kyazdani42/nvim-web-devicons',
             opt = true
         },
+        --after = 'EdenEast/nightfox.nvim',
         config = function()
             require('lualine').setup(require('plugins.statusline'))
         end
@@ -99,12 +100,13 @@ return require('packer').startup(function(use)
         config = function()
             require('bufferline').setup {
                 options = {
-                    separator_style = "padded_slant",
+                    --separator_style = "padded_slant",
                     diagnostics = "nvim_lsp",
                     offsets = {{
                             filetype = 'NvimTree',
                             text = 'Files',
                             text_align = 'center',
+                            highlight = 'Directory',
                         }
                     }
                 }
@@ -267,8 +269,8 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make'
     }
-    -- Addon that uses telescope for selection menus
-    --[[use {
+    -- Plugin that uses telescope for selection menus
+    use {
         'stevearc/dressing.nvim',
         config = function()
             require('dressing').setup {
@@ -281,12 +283,12 @@ return require('packer').startup(function(use)
                     backend = { 'telescope' },
                     --[[telescope = {
                         theme = 'dropdown',
-                    },
+                    },]]
 
                 }
             }
         end,
-    }]]
+    }
 
     --Searchable cheatsheet
     use {
@@ -329,7 +331,7 @@ return require('packer').startup(function(use)
                         t:close()
                     end
                     t:change_dir(vim.fn.getcwd())
-                    vim.api.nvim_buf_set_keymap(t.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
+                    --vim.api.nvim_buf_set_keymap(t.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
                     --t:send('lazygit')
                 end,
             })

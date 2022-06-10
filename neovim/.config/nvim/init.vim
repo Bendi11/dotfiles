@@ -27,7 +27,6 @@ set termguicolors "Enable GUI coloring in the terminal
 syntax on
 set cursorline
 "let g:onedark_style = 'darker' "Make the color scheme darker than normal
-colorscheme nightfox "Set the colorscheme
 "LUA CONFIG
 
 lua << EOF
