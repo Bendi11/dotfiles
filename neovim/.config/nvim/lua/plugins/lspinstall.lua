@@ -39,7 +39,19 @@ lsp_installer.on_server_ready(function(server)
         }
         require("rust-tools").setup(rustopts)
         server:attach_buffers()
-    else
+    elseif server.name == "arduino_language_server" then
+        local FQBN = "megaTinyCore:megaavr:atxy7"
+        server:setup {
+            cmd = {
+                "arduino-language-server",
+                "-cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+                "-fqbn", FQBN,
+                "-cli", vim.fn.expand("~/.local/bin/arduino-cli"),
+                "-clangd", "/usr/bin/clangd"
+            }
+        }
+
+        else
         --[[local opts = {
             capabilities = combined_capabilities,
             on_attach = custom_attach,
@@ -68,6 +80,7 @@ end
 M.setup = function()
     install_lsp('rust_analyzer')
     --install_lsp('clangd')
+    --
 end
 
 return M
