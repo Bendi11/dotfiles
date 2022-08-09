@@ -50,14 +50,14 @@ lsp_installer.on_server_ready(function(server)
                 "-clangd", "/usr/bin/clangd"
             }
         }
-
-        else
+    else 
         --[[local opts = {
             capabilities = combined_capabilities,
             on_attach = custom_attach,
         }]]
         server:setup(opts)
     end
+
 end)
 
 local lsp_installer_servers = require("nvim-lsp-installer.servers")

@@ -80,16 +80,15 @@ return require('packer').startup(function(use)
             'nvim-lualine/lualine.nvim',
         }
     }
-    
+
     use {
         'folke/trouble.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
-        config = function() 
+        config = function()
             require('trouble').setup {
-                
             }
         end
-    } 
+    }
 
     --Buffer tabs that look nice and display lsp diagnostics
     use {
@@ -147,6 +146,19 @@ return require('packer').startup(function(use)
             require('plugins.lspinstall').setup()
         end
     }
+
+    --[[use {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        --after = "neovim/nvim-lspconfig",
+        config = function()
+            require("lsp_lines").setup()
+            vim.diagnostic.config {
+                virtual_lines = {
+                    only_current_line = true
+                },
+            }
+        end,
+    }]]
 
     --Autocompletion plugin
     use {
