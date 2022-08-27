@@ -365,12 +365,15 @@ return require('packer').startup(function(use)
 
     --Automatically write buffer when exiting insert mode
     use {
-        'Pocco81/AutoSave.nvim',
+        'Pocco81/auto-save.nvim',
         event = 'InsertLeave',
         config = function()
-            require('autosave').setup {
-                events = {'InsertLeave'},
-                execution_message = 'autosaved',
+            require('auto-save').setup {
+                execution_message = {
+                    message = function() return "autosaved" end,
+                    dim = 0.18,
+                    cleaning_interval = 1000,
+                },
             }
         end
     }
