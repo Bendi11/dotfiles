@@ -1,6 +1,9 @@
 let g:indentLine_fileTypeExclude = ['alpha', 'packer'] 
-let g:neovide_remember_window_size = v:false
+let g:neovide_remember_window_size = v:true
 let g:neovide_fullscreen = v:false
+
+let g:neovide_floating_blur_amount_x = 2.0
+let g:neovide_floating_blur_amount_y = 2.0
 
 "Disable tabline in dashboard
 "autocmd FileType dashboard let g:indent_blankline_enable = v:false | autocmd WinLeave <buffer> let g:indent_blankline_enable = v:true
@@ -35,6 +38,7 @@ EOF
 
 filetype plugin indent on "Enable automatic indenting based on file type
 
+autocmd BufEnter *.zttl set ft=zettel
 "autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()
 autocmd BufWritePre * set fileformat=unix
 "Control + n to open / close the file tree

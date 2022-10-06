@@ -14,16 +14,18 @@ local custom_attach = function(client, bufnr)
 
 end
 
-lsp_installer.on_server_ready(function(server)
-    local combined_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    local opts = {
-        capabilities = combined_capabilities,
-        on_attach = custom_attach,
-    }
 
+local combined_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lsp_opts = {
+    capabilities = combined_capabilities,
+    on_attach = custom_attach,
+}
+
+lsp_installer.on_server_ready(function(server)
+    
     if server.name == "rust_analyzer" then
         local rustopts = {
-            server = vim.tbl_deep_extend("force", server:get_default_options(), opts, {
+            server = vim.tbl_deep_extend("force", server:get_default_options(), lsp_opts, {
                 on_attach = custom_attach,
                 cmd = server._default_options.cmd,
             }),
@@ -50,12 +52,11 @@ lsp_installer.on_server_ready(function(server)
                 "-clangd", "/usr/bin/clangd"
             }
         }
-    else 
-        --[[local opts = {
-            capabilities = combined_capabilities,
-            on_attach = custom_attach,
-        }]]
-        server:setup(opts)
+    elseif server.name == "clangd" then
+        --opts.filetypes = {"cpp", "objc", "objcpp", "cuda"}
+        server:setup(lsp_opts)
+    else
+        server:setup(lsp_opts)
     end
 
 end)
@@ -77,9 +78,25 @@ local function install_lsp(name)
     end
 end
 
+local server_config = require('lspconfig.configs')
+local root_pattern = require('lspconfig.util').root_pattern
+
+server_config.zettelkasten = {
+  default_config = {
+    cmd = {os.getenv('HOME') .. '/.cargo/bin/zk-lsp'},
+    name = 'zettelkasten',
+    filetypes = {
+      'zettel',
+    },
+    root_dir = root_pattern('')
+  }
+}
+
+require('lspconfig').zettelkasten.setup(lsp_opts)
+
 M.setup = function()
     install_lsp('rust_analyzer')
-    --install_lsp('clangd')
+    install_lsp('clangd')
     --
 end
 
