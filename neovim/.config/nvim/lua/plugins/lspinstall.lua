@@ -11,7 +11,7 @@ local custom_attach = function(client, bufnr)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
     buf_set_keymap('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
 end
 
 
@@ -92,12 +92,12 @@ server_config.zettelkasten = {
   }
 }
 
-require('lspconfig').zettelkasten.setup(lsp_opts)
+
 
 M.setup = function()
     install_lsp('rust_analyzer')
     install_lsp('clangd')
-    --
+    require('lspconfig').zettelkasten.setup(lsp_opts)
 end
 
 return M
