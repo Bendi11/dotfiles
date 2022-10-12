@@ -3,15 +3,16 @@ local M = {}
 local lsp_installer = require("nvim-lsp-installer")
 
 local custom_attach = function(client, bufnr)
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_keymap(...) vim.keymap.set(...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local cmd = vim.api.nvim_command
 
-    local opts = {noremap = true, silent = true}
-    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-    buf_set_keymap('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-
+    local opts = {noremap = true, silent = true, buffer = bufnr}
+    buf_set_keymap('n', 'K',  vim.lsp.buf.hover,        opts)
+    buf_set_keymap('n', 'gr', vim.lsp.buf.references,   opts)
+    buf_set_keymap('n', 'rn', vim.lsp.buf.rename,       opts)
+    buf_set_keymap('n', 'gD', vim.lsp.buf.declaration,  opts)
+    buf_set_keymap('n', 'gd', vim.lsp.buf.definition,   opts)
 end
 
 
