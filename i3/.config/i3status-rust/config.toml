@@ -3,7 +3,6 @@ theme = "dracula"
 icons = "material-nf"
 #icons_format = " <span font_family='FiraCode Nerd Font Mono'>{icon}</span> "
 
-
 [[block]]
 block = "disk_space"
 path = "/"
@@ -24,6 +23,13 @@ format_swap = "{swap_used}/{swap_total}"
 block = "cpu"
 interval = 1
 format = "{barchart} {utilization} {frequency}"
+
+
+[[block]]
+block = "battery"
+interval = 10
+hide_missing = true
+
 
 [[block]]
 block = "sound"
