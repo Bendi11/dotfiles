@@ -93,12 +93,12 @@ server_config.zettelkasten = {
   }
 }
 
-require('lspconfig').zettelkasten.setup(lsp_opts)
+
 
 M.setup = function()
     install_lsp('rust_analyzer')
     install_lsp('clangd')
-    --
+    require('lspconfig').zettelkasten.setup(lsp_opts)
 end
 
 return M
