@@ -3,3 +3,5 @@
 	email = bkliebmann@gmail.com
 [credential]
 	helper = libsecret
+[merge]
+	tool = nvim -d
