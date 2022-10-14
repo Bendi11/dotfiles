@@ -4,7 +4,7 @@ return function(use)
         'vimwiki/vimwiki',
         setup = function() 
             vim.g.vimwiki_list = {{
-                path = '~/zk/',
+                path = '~/zettelkasten/',
                 syntax = 'markdown',
                 ext = '.md',
                 auto_generate_links = 1,
