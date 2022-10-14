@@ -3,6 +3,8 @@ return require('packer').startup(function(use)
 
     --Install all color themes
     require('plugins.themes')(use)
+
+    require('plugins.markdown')(use)
  
     --Dashboard
     use {
