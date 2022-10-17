@@ -16,7 +16,7 @@ local custom_attach = function(client, bufnr)
 end
 
 
-local combined_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local combined_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lsp_opts = {
     capabilities = combined_capabilities,
     on_attach = custom_attach,
