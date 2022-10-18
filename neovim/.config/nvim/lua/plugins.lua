@@ -5,14 +5,9 @@ return require('packer').startup(function(use)
     require('plugins.themes')(use)
 
     require('plugins.markdown')(use)
- 
-    --Dashboard
-    use {
-        'goolord/alpha-nvim',
-        config = function()
-            require('plugins.dashboard').setup()
-        end
-    }
+    
+    require('plugins.dashboard')(use)
+    
 
     use {
         'norcalli/nvim-colorizer.lua',
@@ -130,37 +125,6 @@ return require('packer').startup(function(use)
             'mortepau/codicons.nvim'
         }
     }
-
-    --Preset configurations for Neovim's LSP client
-    use {
-        'neovim/nvim-lspconfig',
-    }
-
-    --Helper to automatically download and install LSP servers
-    use {
-        'williamboman/nvim-lsp-installer',
-        requires = {
-            'neovim/nvim-lspconfig',
-            'simrat39/rust-tools.nvim',
-            'rcarriga/nvim-notify',
-        },
-        config = function()
-            require('plugins.lspinstall').setup()
-        end
-    }
-
-    --[[use {
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        --after = "neovim/nvim-lspconfig",
-        config = function()
-            require("lsp_lines").setup()
-            vim.diagnostic.config {
-                virtual_lines = {
-                    only_current_line = true
-                },
-            }
-        end,
-    }]]
 
     --Autocompletion plugin
     use {
