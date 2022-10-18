@@ -233,6 +233,8 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
         config = function()
+            -- Undepreceate highlight groups until colorschemes update
+            require('plugins/ts-fix')
             require('nvim-treesitter.configs').setup{
                 --ensure_installed = "all",
                 highlight = {
