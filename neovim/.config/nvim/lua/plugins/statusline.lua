@@ -49,8 +49,6 @@ end
 
 ins_left {
 	'lsp_progress',
-	display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }},
-	-- With spinner
 	-- display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' }},
 	colors = {
 	  percentage  = colors.cyan,
@@ -68,7 +66,6 @@ ins_left {
 		title = { pre = '', post = ': ' },
 		lsp_client_name = { pre = '[', post = ']' },
 		spinner = { pre = '', post = '' },
-		message = { commenced = 'In Progress', completed = 'Completed' },
 	},
 	display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }, 'spinner' },
 	timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },

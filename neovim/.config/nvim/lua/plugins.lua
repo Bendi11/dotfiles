@@ -8,6 +8,7 @@ return require('packer').startup(function(use)
     
     require('plugins.dashboard')(use)
     
+    require('lsp.lsp')(use)
 
     use {
         'norcalli/nvim-colorizer.lua',
