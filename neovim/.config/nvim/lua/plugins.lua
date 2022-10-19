@@ -5,6 +5,7 @@ return require('packer').startup(function(use)
     require('plugins.themes')(use)
     require('plugins.markdown')(use)
     require('plugins.dashboard')(use)
+    require('plugins.statusline')(use)
     require('lsp.lsp')(use)
     require('plugins.cmp')(use)
 
@@ -25,7 +26,10 @@ return require('packer').startup(function(use)
     }
 
 
-    use 'kyazdani42/nvim-web-devicons' --Additional icons for file tree and completion menu
+    use {
+        'kyazdani42/nvim-web-devicons', --Additional icons for file tree and completion menu
+        opt = true,
+    }
 
 
     use {
@@ -57,26 +61,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    --Statusline plugin with powerline font support
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = {
-            'kyazdani42/nvim-web-devicons',
-            opt = true
-        },
-        --after = 'EdenEast/nightfox.nvim',
-        config = function()
-            require('lualine').setup(require('plugins.statusline'))
-        end
-    }
-    --Extension to lualine showing LSP progress messages
-    use {
-        'arkav/lualine-lsp-progress',
-        requires = {
-            'nvim-lualine/lualine.nvim',
-        }
-    }
-
     use {
         'folke/trouble.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
@@ -106,14 +90,6 @@ return require('packer').startup(function(use)
                     }
                 }
             }
-        end
-    }
-
-    --Fixes cursor hold times
-    use {
-        'antoinemadec/FixCursorHold.nvim',
-        config = function()
-            vim.g.cursorhold_updatetime = 1000
         end
     }
 
