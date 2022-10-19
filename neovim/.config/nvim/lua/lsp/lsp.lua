@@ -1,5 +1,6 @@
 return function(use)
     require('lsp.install')(use)
+    require('lsp.dap')(use)
 
     use {
         'simrat39/rust-tools.nvim',

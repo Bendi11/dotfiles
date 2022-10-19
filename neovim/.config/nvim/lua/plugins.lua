@@ -3,6 +3,9 @@ return require('packer').startup(function(use)
 
     --Install all color themes
     require('plugins.themes')(use)
+    
+
+
     require('plugins.markdown')(use)
     require('plugins.dashboard')(use)
     require('plugins.statusline')(use)
@@ -28,7 +31,6 @@ return require('packer').startup(function(use)
 
     use {
         'kyazdani42/nvim-web-devicons', --Additional icons for file tree and completion menu
-        opt = true,
     }
 
 
@@ -56,6 +58,8 @@ return require('packer').startup(function(use)
                 diagnostics = {
                     enable = true,
                 },
+                sync_root_with_cwd = true,
+                respect_buf_cwd = true,
             })
 
         end
@@ -63,7 +67,7 @@ return require('packer').startup(function(use)
 
     use {
         'folke/trouble.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
+        requires = {'kyazdani42/nvim-web-devicons'},
         config = function()
             require('trouble').setup {
             }
@@ -158,14 +162,7 @@ return require('packer').startup(function(use)
             }
         end,
     }
-    
-    --LSP extensions specific to rust, setup by the lspinstall.lua module
-    --[[use {
-        'simrat39/rust-tools.nvim',
-        requires = {
-            'neovim/nvim-lspconfig'
-        },
-    }]]
+
 
     --Fuzzy finder
     use {
@@ -218,14 +215,17 @@ return require('packer').startup(function(use)
                     winblend = 50,
                 },
                 select = {
+                    enabled = false,
                     backend = { 'telescope' },
-                    --[[telescope = {
-                        theme = 'dropdown',
-                    },]]
-
                 }
             }
         end,
+    }
+    
+    --Vim popup API implementation
+    use {
+        'nvim-lua/popup.nvim',
+        opt = true,
     }
 
     --Searchable cheatsheet
