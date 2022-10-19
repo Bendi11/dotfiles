@@ -10,6 +10,8 @@ return require('packer').startup(function(use)
     
     require('lsp.lsp')(use)
 
+    require('plugins.cmp')(use)
+
     use {
         'norcalli/nvim-colorizer.lua',
         ft = { 'rust', 'css', 'html' },
@@ -119,35 +121,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    --Pictograms next to nvim_cmp autocompletion suggestions
-    use {
-        'onsails/lspkind-nvim',
-        requires = {
-            'mortepau/codicons.nvim'
-        }
-    }
-
-    --Autocompletion plugin
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = {
-            'L3MON4D3/LuaSnip',
-            'onsails/lspkind-nvim',
-        },
-        config = function()
-            require('plugins.cmp').setup()
-        end
-    }
-
-
-    use 'hrsh7th/cmp-nvim-lsp' --LSP client autocompletion source
-    use 'hrsh7th/cmp-buffer' --Buffer source for autocompletion
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'saadparwaiz1/cmp_luasnip' --Snippets completion source
-
-    use 'L3MON4D3/LuaSnip' --Snippets support
-
     --Popup notifications
     use {
         'rcarriga/nvim-notify',
@@ -199,7 +172,7 @@ return require('packer').startup(function(use)
         run = ':TSUpdate',
         config = function()
             -- Undepreceate highlight groups until colorschemes update
-            require('plugins/ts-fix')
+            require('plugins.ts-fix')
             require('nvim-treesitter.configs').setup{
                 --ensure_installed = "all",
                 highlight = {
@@ -308,9 +281,6 @@ return require('packer').startup(function(use)
                 --hidden = true,
                 close_on_exit = true,
                 on_open = function(t) 
-                    function close_lazygit() 
-                        t:close()
-                    end
                     t:change_dir(vim.fn.getcwd())
                     --vim.api.nvim_buf_set_keymap(t.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
                     --t:send('lazygit')
