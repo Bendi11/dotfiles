@@ -198,7 +198,8 @@ return require('packer').startup(function(use)
             'nvim-lua/plenary.nvim',
             'BurntSushi/ripgrep',
             'nvim-telescope/telescope-ui-select.nvim',
-            'nvim-telescope/telescope-fzf-native.nvim'
+            'nvim-telescope/telescope-fzf-native.nvim',
+            'nvim-telescope/telescope-symbols.nvim',
         },
         config = function()
             local telescope = require('telescope')
