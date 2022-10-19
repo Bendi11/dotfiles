@@ -1,9 +1,7 @@
 return {
     rust_analyzer = function(server, opts)
         local rustopts = {
-            server = vim.tbl_deep_extend("force", opts, {
-                cmd = server._default_options.cmd,
-            }),
+            server = vim.tbl_deep_extend("force", opts, {}),
             tools = {
                 autoSetHints = true,
                 inlay_hints = {

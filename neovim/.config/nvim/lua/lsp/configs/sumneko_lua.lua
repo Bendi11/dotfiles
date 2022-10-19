@@ -1,6 +1,10 @@
 return {
     sumneko_lua = function(server, opts)
-        opts = vim.tbl_deep_extend(
+        local runtime_path = vim.split(package.path, ";")
+        table.insert(runtime_path, "lua/?.lua")
+        table.insert(runtime_path, "lua/?/init.lua")
+
+        local lua_opts = vim.tbl_deep_extend(
             'force',
             opts,
             {
@@ -17,6 +21,6 @@ return {
             }
         )
 
-        server:setup(opts)
+        server.setup(lua_opts)
     end
 }

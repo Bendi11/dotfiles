@@ -1,14 +1,14 @@
-
-
-
 return function(use)
+    require('lsp.install')(use)
+
     --Preset configurations for Neovim's LSP client
     use {
         'neovim/nvim-lspconfig',
+        --after = 'mason.nvim',
         config = function()
-            local keys = require('keys')
+            local keys = require('lsp.keys')
             local lspconfig = require('lspconfig')
-            local configs = require('configs')
+            local configs = require('lsp.configs')
 
             local lsp_opts = {
                 on_attach = function(_, bufnr) keys.set_buf_keymap(bufnr) end,
@@ -22,6 +22,8 @@ return function(use)
                 local server = lspconfig[name]
                 if server then
                     setup(server, lsp_opts)
+                else 
+                    vim.notify('Language Server ' .. name .. ' configured but not found', 'error')
                 end
             end
         end
