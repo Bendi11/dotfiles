@@ -12,6 +12,23 @@ return function(use)
         },
         ft = 'markdown',
         config = function()
+            vim.cmd([[
+                "hi link tkLink Directory
+                exec 'hi tkLink cterm=underline gui=underline' .
+                    \' guibg=' . synIDattr(synIDtrans(hlID('Directory')), 'bg', 'gui') .
+                    \' ctermbg=' . synIDattr(synIDtrans(hlID('Directory')), 'bg', 'cterm') .
+                    \' guifg=' . synIDattr(synIDtrans(hlID('Directory')), 'fg', 'gui')
+                    
+                "\' ctermfg=' . synIDattr(synIDtrans(hlID('Directory')), 'fg', 'cterm')
+                hi link tkBrackets Conceal
+                   
+                hi link tkHighlight Cursor
+                
+                hi link CalNavi CalRuler
+                hi link tkTagSep WinSeparator
+                hi link tkTag SignColumn
+            ]])
+
             local dir = vim.fn.expand('~/zettelkasten')
             local template = dir .. '/template'
             require'telekasten'.setup {

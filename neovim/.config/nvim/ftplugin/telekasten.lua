@@ -16,3 +16,4 @@ vim.keymap.set('n', 'zC',   function() telekasten.show_calendar({ cmd = 'Calenda
 vim.keymap.set('i', '<leader>[',   function() telekasten.insert_link({i = true}) end, opts)
 
 vim.keymap.set('n', 'z',    telekasten.panel,                      opts)
+vim.opt_local.textwidth = 80;
