@@ -3,13 +3,9 @@ return require('packer').startup(function(use)
 
     --Install all color themes
     require('plugins.themes')(use)
-
     require('plugins.markdown')(use)
-    
     require('plugins.dashboard')(use)
-    
     require('lsp.lsp')(use)
-
     require('plugins.cmp')(use)
 
     use {
@@ -125,8 +121,9 @@ return require('packer').startup(function(use)
     use {
         'rcarriga/nvim-notify',
         config = function()
-            vim.notify = require('notify')
-            require('notify').setup({
+            local notify = require('notify')
+            vim.notify = notify
+            notify.setup({
                 stages = 'slide',
             })
         end
@@ -201,6 +198,7 @@ return require('packer').startup(function(use)
             'nvim-lua/plenary.nvim',
             'BurntSushi/ripgrep',
             'nvim-telescope/telescope-ui-select.nvim',
+            'nvim-telescope/telescope-fzf-native.nvim'
         },
         config = function()
             local telescope = require('telescope')
@@ -211,18 +209,27 @@ return require('packer').startup(function(use)
                         require('telescope.themes').get_dropdown {
 
                         }
+                    },
+                    ["fzf"] = {
+                      fuzzy = true,                    -- false will only do exact matching
+                      override_generic_sorter = true,  -- override the generic sorter
+                      override_file_sorter = true,     -- override the file sorter
+                      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                     }
                 }
             }
+
             telescope.load_extension('ui-select')
+            telescope.load_extension('fzf')
         end
     }
 
     --Extension to telescope that should improve performace
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make'
+        run = 'make',
     }
+
     -- Plugin that uses telescope for selection menus
     use {
         'stevearc/dressing.nvim',
@@ -252,6 +259,7 @@ return require('packer').startup(function(use)
             { 'nvim-lua/popup.nvim' },
             { 'nvim-lua/plenary.nvim' },
         },
+        cmd = { 'Cheatsheet', 'CheatsheetEdit' },
         config = function()
             require('cheatsheet').setup {}
         end
@@ -280,7 +288,7 @@ return require('packer').startup(function(use)
                 cmd = 'lazygit',
                 --hidden = true,
                 close_on_exit = true,
-                on_open = function(t) 
+                on_open = function(t)
                     t:change_dir(vim.fn.getcwd())
                     --vim.api.nvim_buf_set_keymap(t.bufnr, "n", "q", "<cmd>close<CR>", {noremap = true, silent = true})
                     --t:send('lazygit')

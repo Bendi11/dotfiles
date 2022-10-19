@@ -1,10 +1,16 @@
 return function(use)
     use {
+        'renerocksai/calendar-vim',
+        cmd = { 'CalendarVR', 'CalendarT', 'CalendarH', 'Calendar' },
+    }
+
+    use {
         'renerocksai/telekasten.nvim',
         requires = {
             'nvim-telescope/telescope.nvim',
             'renerocksai/calendar-vim',
         },
+        ft = 'markdown',
         config = function()
             local dir = vim.fn.expand('~/zettelkasten')
             local template = dir .. '/template'

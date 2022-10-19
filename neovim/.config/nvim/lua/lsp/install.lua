@@ -3,8 +3,6 @@ return function(use)
     use {
         'williamboman/mason.nvim',
         requires = {
-            'simrat39/rust-tools.nvim',
-            'rcarriga/nvim-notify',
             'williamboman/mason-lspconfig.nvim'
         },
         config = function()
