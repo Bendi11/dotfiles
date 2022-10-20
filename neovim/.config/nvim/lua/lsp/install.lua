@@ -6,7 +6,9 @@ return function(use)
             'williamboman/mason-lspconfig.nvim'
         },
         config = function()
-            require("mason").setup{}
+            require("mason").setup{
+                install_root_dir = require('lsp.glob').MASON_INSTALL_DIR
+            }
             require("mason-lspconfig").setup{
                 ensure_installed = {
                     'rust_analyzer',
