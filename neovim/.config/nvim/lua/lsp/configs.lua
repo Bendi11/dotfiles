@@ -1,7 +1,9 @@
-local function default_setup(server, opts) server:setup(opts) end
+local function default_setup(server, opts) server.setup(opts) end
 
 local M = {
     clangd = default_setup,
+    cmake = default_setup,
+    zls = default_setup,
 }
 
 return vim.tbl_deep_extend(
