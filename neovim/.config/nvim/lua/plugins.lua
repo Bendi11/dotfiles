@@ -49,7 +49,7 @@ return require('packer').startup(function(use)
             --vim.g.nvim_tree_respect_buf_cwd = 1
             require('nvim-tree').setup({
                 disable_netrw = false,
-                hijack_netrw = true,
+                hijack_netrw = false,
                 update_cwd = true,
                 update_focused_file = {
                     enable = true,
@@ -173,6 +173,7 @@ return require('packer').startup(function(use)
             'nvim-telescope/telescope-ui-select.nvim',
             'nvim-telescope/telescope-fzf-native.nvim',
             'nvim-telescope/telescope-symbols.nvim',
+            'nvim-telescope/telescope-file-browser.nvim',
         },
         config = function()
             local telescope = require('telescope')
@@ -189,12 +190,17 @@ return require('packer').startup(function(use)
                       override_generic_sorter = true,  -- override the generic sorter
                       override_file_sorter = true,     -- override the file sorter
                       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                    },
+                    ["file_browser"] = {
+                        theme = 'dropdown',
+                        hijack_netrw = true,
                     }
                 }
             }
 
             telescope.load_extension('ui-select')
             telescope.load_extension('fzf')
+            telescope.load_extension('file_browser')
         end
     }
 

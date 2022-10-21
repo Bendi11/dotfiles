@@ -34,7 +34,7 @@ return function(use)
             dashboard.section.buttons.val = {
                 dashboard.button(" t o", "  Recently opened files", ":Telescope oldfiles<CR>"),
                 dashboard.button(" t f", "  Find file", ":Telescope find_files<CR>"),
-                dashboard.button(" t F", "  File browser", ":NvimTreeToggle<CR>"),
+                dashboard.button(" t F", "  File browser", ":Telescope file_browser<CR>"),
                 dashboard.button(" c n", "  New file", ":ene <BAR> startinsert<CR>"),
                 dashboard.button(" c c", "  Update plugins", ":PackerUpdate<CR>"),
                 dashboard.button("q", "  Quit", "<Cmd>qa<CR>"),
