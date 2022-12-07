@@ -218,7 +218,9 @@ return require('packer').startup(function(use)
                 input = {
                     default_prompt = '⥤ ',
                     insert_only = true,
-                    winblend = 50,
+                    win_options = {
+                        winblend = 50,
+                    },
                 },
                 select = {
                     enabled = false,
