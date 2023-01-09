@@ -1,5 +1,6 @@
-return {
-    sumneko_lua = function(server, opts)
+return function(cfgs, opts)
+    cfgs['sumneko_lua'] = function(servername)
+        local server = require('lspconfig')[servername]
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
         table.insert(runtime_path, "lua/?/init.lua")
@@ -23,4 +24,4 @@ return {
 
         server.setup(lua_opts)
     end
-}
+end

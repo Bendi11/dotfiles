@@ -43,8 +43,8 @@ return function(use)
             require 'mason-nvim-dap'.setup_handlers {
                 function(_)
                 end,
-                lldb = function()
-                    dap.adapters.lldb = {
+                codelldb = function()
+                    dap.adapters.codelldb = {
 	                    type = "executable",
 	                    command = install_dir .. '/bin/codelldb',
                     }

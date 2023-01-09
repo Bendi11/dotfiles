@@ -1,5 +1,6 @@
-return {
-    arduino_language_server = function(server, opts)
+return function(cfgs, opts)
+    cfgs['arduino_language_server'] = function(servername)
+        local server = require('lspconfig')[servername]
         local FQBN = "megaTinyCore:megaavr:atxy7"
         opts = vim.tbl_deep_extend(
             'force',
@@ -18,4 +19,4 @@ return {
 
         server:setup(opts)
     end
-}
+end

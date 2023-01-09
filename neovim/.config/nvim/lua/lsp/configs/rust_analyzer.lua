@@ -1,5 +1,6 @@
-return {
-    rust_analyzer = function(server, opts)
+return function(cfgs, opts)
+    cfgs['rust_analyzer'] = function(servername)
+        local server = require('lspconfig')[servername]
         local ok, rust_tools = pcall(require, 'rust-tools')
 
         local rustopts = {
@@ -35,5 +36,5 @@ return {
         else
             rust_tools.setup(rustopts)
         end
-    end,
-}
+    end
+end
