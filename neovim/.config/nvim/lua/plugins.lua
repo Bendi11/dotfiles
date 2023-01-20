@@ -58,6 +58,10 @@ return require('packer').startup(function(use)
                 diagnostics = {
                     enable = true,
                 },
+                git = {
+                    enable = true,
+                    ignore = false,
+                },
                 sync_root_with_cwd = true,
                 respect_buf_cwd = true,
             })
