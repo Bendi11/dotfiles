@@ -1,5 +1,5 @@
 return function(cfgs, opts)
-    cfgs['sumneko_lua'] = function(servername)
+    cfgs['lua_ls'] = function(servername)
         local server = require('lspconfig')[servername]
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")

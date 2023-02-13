@@ -17,7 +17,7 @@ return function(use)
             m_lspconfig.setup{
                 ensure_installed = {
                     'rust_analyzer',
-                    'sumneko_lua',
+                    'lua_ls',
                     'clangd',
                 }
             }
