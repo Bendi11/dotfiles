@@ -106,11 +106,14 @@ return require('packer').startup(function(use)
         'rcarriga/nvim-notify',
         config = function()
             local notify = require('notify')
-            vim.notify = notify
             notify.setup({
+                max_width = 50,
+                max_height = 10,
                 stages = 'slide',
             })
-        end
+
+            vim.notify = notify
+            end
     }
 
     --Delimiter pairs
