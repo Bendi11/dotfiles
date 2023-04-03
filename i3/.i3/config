@@ -35,7 +35,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -font "FiraCode Nerd Font Mono 12" -show drun
 
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id pa-applet
