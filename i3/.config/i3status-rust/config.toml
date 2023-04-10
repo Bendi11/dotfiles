@@ -30,7 +30,6 @@ format = "$barchart $utilization $frequency"
 block = "battery"
 interval = 10
 missing_format = ""
-#hide_missing = true
 
 
 [[block]]
@@ -42,10 +41,7 @@ cmd = "pavucontrol"
 
 [[block]]
 block = "net"
-#on_click = "alacritty -e nmtui"
 missing_format = "No Wireless"
-#interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
-#interface_name_include = []
 format = "$icon $ssid"
 
 [[block.click]]

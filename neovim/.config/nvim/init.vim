@@ -5,10 +5,18 @@ let g:neovide_fullscreen = v:false
 let g:neovide_floating_blur_amount_x = 2.0
 let g:neovide_floating_blur_amount_y = 2.0
 
-"Disable tabline in dashboard
-"autocmd FileType dashboard let g:indent_blankline_enable = v:false | autocmd WinLeave <buffer> let g:indent_blankline_enable = v:true
+function! IsMachine(hostname)
+    return match(hostname(), a:hostname) >= 0
+endfunction
+
 set clipboard+=unnamedplus "Use the system clipboard
-set guifont=FiraCode\ Nerd\ Font\ Mono:h14
+
+if IsMachine('rocinante')
+    set guifont=FiraCode\ Nerd\ Font\ Mono:h10
+else
+    set guifont=FiraCode\ Nerd\ Font\ Mono:h14
+endif
+
 set mouse=a "Enable mouse controls
 set number "Enable line numbering
 "set autochdir
