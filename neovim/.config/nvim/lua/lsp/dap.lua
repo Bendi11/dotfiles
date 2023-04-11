@@ -38,27 +38,28 @@ return function(use)
         after = {'mason.nvim', 'nvim-dap'},
         config = function()
             local dap = require('dap')
-            require('mason-nvim-dap').setup{}
             local install_dir = require('lsp.glob').MASON_INSTALL_DIR
-            require 'mason-nvim-dap'.setup_handlers {
-                function(_)
-                end,
-                codelldb = function()
-                    dap.adapters.codelldb = {
-	                    type = "executable",
-	                    command = install_dir .. '/bin/codelldb',
-                    }
+            require 'mason-nvim-dap'.setup {
+                handlers = {
+                    function(_)
+                    end,
+                    codelldb = function()
+                        dap.adapters.codelldb = {
+	                        type = "executable",
+	                        command = install_dir .. '/bin/codelldb',
+                        }
 
-                    dap.configurations.rust = {
-	                    {
-	            	        type = "lldb",
-	            	        request = "launch",
-	            	        name = "Launch file",
-	            	        program = "${file}", -- This configuration will launch the current file if used.
-	                    },
-                    }
-                end,
-            } 
+                        dap.configurations.rust = {
+	                        {
+	                	        type = "lldb",
+	                	        request = "launch",
+	                	        name = "Launch file",
+	                	        program = "${file}", -- This configuration will launch the current file if used.
+	                        },
+                        }
+                    end,
+                },
+            }
         end
     }
 
