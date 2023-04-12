@@ -6,6 +6,11 @@ theme = "dracula"
 icons = "material-nf"
 #icons_format = " <span font_family='FiraCode Nerd Font Mono'>{icon}</span> "
 
+[icons.overrides]
+bat = ['󰁺', '󰁻', '󰁼', '󰁽', '󰁾', '󰁿', '󰂀', '󰂁', '󰂂', '󰁹']
+bat_charging = ['󰢜', '󰂆', '󰂇', '󰂈', '󰢝', '󰂉', '󰢞', '󰂊', '󰂋', '󰂅']
+bat_not_available = '󱃌'
+
 [[block]]
 block = "disk_space"
 path = "/"
