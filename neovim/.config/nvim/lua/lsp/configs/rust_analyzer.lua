@@ -2,6 +2,9 @@ return function(cfgs, opts)
     cfgs['rust_analyzer'] = function(servername)
         local server = require('lspconfig')[servername]
         local ok, rust_tools = pcall(require, 'rust-tools')
+        if not ok then 
+            vim.notify('Failed to find rust tools installed')
+        end
 
         local rustopts = {
             server = vim.tbl_deep_extend("force", opts, {
