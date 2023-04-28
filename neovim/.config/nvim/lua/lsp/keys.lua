@@ -10,6 +10,15 @@ M.set_buf_keymap = function(bufnr)
     buf_set_keymap('n', 'rn', vim.lsp.buf.rename,       opts)
     buf_set_keymap('n', 'gD', vim.lsp.buf.declaration,  opts)
     buf_set_keymap('n', 'gd', vim.lsp.buf.definition,   opts)
+    buf_set_keymap('n', 'ca', vim.lsp.buf.code_action,  opts)
+    buf_set_keymap(
+        'n',
+        '<C-e>',
+        function()
+            vim.diagnostic.open_float(0, { scope = "line", border = "single" })
+        end,
+        opts
+    )
 end
 
 return M

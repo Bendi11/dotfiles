@@ -51,8 +51,6 @@ autocmd BufWritePre * set fileformat=unix
 "Control + n to open / close the file tree
 nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 nnoremap <silent> xw <cmd>TroubleToggle workspace_diagnostics<cr>
-nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <C-e> :lua vim.diagnostic.open_float(0, { scope = "line", border = "single" })<CR>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <C-Space> @=(foldlevel('.')?'zA':"\<C-Space>")<CR>
 vnoremap <Space> zf

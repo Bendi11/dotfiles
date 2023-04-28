@@ -21,11 +21,11 @@ return function(use)
                     'clangd',
                 }
             }
-            
+
             local default_opts = {
                 on_attach = function(_, bufnr) require('lsp.keys').set_buf_keymap(bufnr) end,
             }
-            
+
             local ok, cmp = pcall(require, 'cmp_nvim_lsp')
             if ok then
                 default_opts.capabilities = cmp.default_capabilities()
