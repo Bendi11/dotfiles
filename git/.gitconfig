@@ -7,3 +7,5 @@
 	tool = nvim -d
 [core]
 	editor = nvim
+[http]
+	postBuffer = 157286400
