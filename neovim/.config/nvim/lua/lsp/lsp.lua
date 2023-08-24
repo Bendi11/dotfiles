@@ -3,6 +3,8 @@ return function(use)
 
     use 'simrat39/rust-tools.nvim'
 
+    use 'Freedzone/kerbovim'
+
     --Preset configurations for Neovim's LSP client
     use {
         'neovim/nvim-lspconfig',
