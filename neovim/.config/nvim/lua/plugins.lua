@@ -69,11 +69,37 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- LSP diagnostics browser
     use {
         'folke/trouble.nvim',
         requires = {'kyazdani42/nvim-web-devicons'},
         config = function()
+            local signs = {
+                -- icons / text used for a diagnostic
+                error = "",
+                warning = "",
+                hint = "",
+                information = "",
+                other = "",
+            }
+
+            local vim_signs = {
+                Error = signs.error,
+                Warn = signs.warning,
+                Hint = signs.hint,
+                Info = signs.information,
+            }
+
+            -- Define neovim's gutter icons to match trouble's
+            for kind, icon in pairs(vim_signs) do
+                local highlight = "DiagnosticSign" .. kind
+                vim.fn.sign_define(highlight, { text = icon, texthl = highlight, numhl = '' })
+            end
+
             require('trouble').setup {
+                fold_open = "",
+                fold_closed = "",
+                signs = signs,
             }
         end
     }
@@ -236,7 +262,7 @@ return require('packer').startup(function(use)
             }
         end,
     }
-    
+
     --Vim popup API implementation
     use {
         'nvim-lua/popup.nvim',
@@ -272,7 +298,8 @@ return require('packer').startup(function(use)
                 float_opts = {
                     border = 'curved',
                 },
-                direction = 'float',
+                direction = 'vertical',
+                open_mapping = [[<c-\>]],
             }
 
             local Terminal = require('toggleterm.terminal').Terminal;
@@ -291,14 +318,7 @@ return require('packer').startup(function(use)
                 lazygit:toggle()
             end
 
-            function setup_term_keymaps() 
-                local function map(...) vim.api.nvim_buf_set_keymap(0, ...) end
-                map('t', [[<C-\>]], "<cmd>ToggleTerm<CR>", {noremap = true, silent = false})
-            end
-            
             vim.api.nvim_set_keymap('n', 'nq', '<cmd>lua toggle_lazygit()<CR>', {noremap = true, silent = true})
-            vim.api.nvim_set_keymap('n', [[<C-\>]], "<cmd>ToggleTerm<CR>", {noremap = true, silent = true})
-            vim.cmd('autocmd! TermOpen term://* lua setup_term_keymaps()')
         end
     }
 

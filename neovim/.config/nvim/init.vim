@@ -46,6 +46,7 @@ lua << EOF
 require('plugins')
 EOF
 
+au BufRead,BufNewFile *.ks set filetype=kerboscript
 filetype plugin indent on "Enable automatic indenting based on file type
 
 "autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'rust-tools.inlay_hints'.set_inlay_hints()

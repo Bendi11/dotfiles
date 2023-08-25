@@ -1,5 +1,5 @@
 return function(use)
-    
+
     local DEFAULT_THEME = 'melange'
     vim.cmd('colorscheme ' .. DEFAULT_THEME)
 
