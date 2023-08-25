@@ -48,8 +48,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 1 && dunstify "蓼"
 bindsym XF86AudioMute exec --no-startup-id pamixer -t
 
 # Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && dunstify "󰳲 " -h int:value:"`light -G`"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && dunstify "󰳲 " -h int:value:"`light -G`"
+bindsym F3 exec --no-startup-id light -A 5 && dunstify "󰳲 " -h int:value:"`light -G`"
+bindsym F2 exec --no-startup-id light -U 5 && dunstify "󰳲 " -h int:value:"`light -G`"
 
 # Start Applications
 bindsym --release $mod+F1 exec neovide
@@ -215,6 +215,8 @@ exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore; sleep 1
 exec --no-startup-id nm-applet
 exec --no-startup-id udiskie
+
+exec --no-startup-id xinput set-prop 9 319 1
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:

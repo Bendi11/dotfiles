@@ -13,6 +13,8 @@ set clipboard+=unnamedplus "Use the system clipboard
 
 if IsMachine('rocinante')
     set guifont=FiraCode\ Nerd\ Font\ Mono:h10
+elseif IsMachine('andromeda')
+    set guifont=FiraCode\ Nerd\ Font\ Mono:h8
 else
     set guifont=FiraCode\ Nerd\ Font\ Mono:h14
 endif
