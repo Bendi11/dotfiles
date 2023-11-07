@@ -17,3 +17,5 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.dotnet/tools:/usr/share/dotnet"
+
+export LLVM_SYS_140_PREFIX="$HOME/dev/pkg/llvm-14.0.6"
