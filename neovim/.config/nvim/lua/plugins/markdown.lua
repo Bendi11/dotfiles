@@ -1,12 +1,12 @@
-return function(use)
-    use {
+return {
+    {
         'renerocksai/calendar-vim',
         cmd = { 'CalendarVR', 'CalendarT', 'CalendarH', 'Calendar' },
-    }
+    },
 
-    use {
+    {
         'renerocksai/telekasten.nvim',
-        requires = {
+        dependencies = {
             'nvim-telescope/telescope.nvim',
             'renerocksai/calendar-vim',
         },
@@ -52,11 +52,5 @@ return function(use)
                 plug_into_calendar = true,
             }
         end
-    }
-
-    --[[use {
-        'itchyny/calendar.vim'
-    }]]
-    
-    
-end
+    },
+}

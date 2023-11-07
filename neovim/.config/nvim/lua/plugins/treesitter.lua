@@ -5,7 +5,7 @@ return {
         build = ':TSUpdate',
         config = function()
             -- Undepreceate highlight groups until colorschemes update
-            require('treesitter.fix')
+            require('plugins.treesitter.fix')
             require('nvim-treesitter.configs').setup{
                 --ensure_installed = "all",
                 highlight = {

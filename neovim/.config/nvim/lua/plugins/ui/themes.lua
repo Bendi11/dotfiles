@@ -4,7 +4,12 @@ return {
 
     'rebelot/kanagawa.nvim',
 
-    'savq/melange',
+    {
+        'savq/melange',
+        config = function()
+            vim.cmd("colorscheme melange")
+        end
+    },
 
     --[[use {
         'aktersnurra/no-clown-fiesta.nvim',

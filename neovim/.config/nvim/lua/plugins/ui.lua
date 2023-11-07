@@ -1,4 +1,10 @@
 return {
+    require('plugins.ui.dashboard'),
+    require('plugins.ui.statusline'),
+    require('plugins.ui.telescope'),
+    require('plugins.ui.term'),
+    require('plugins.ui.themes'),
+
     -- Preview hex color codes in editor
     {
         'norcalli/nvim-colorizer.lua',

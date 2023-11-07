@@ -27,7 +27,7 @@ return function(cfgs, opts)
                 dap = {
                     adapter = {
                         type = 'executable',
-                        command = require'lsp.glob'.MASON_INSTALL_DIR  .. '/codelldb',
+                        command = require'plugins.lsp.glob'.MASON_INSTALL_DIR  .. '/codelldb',
                         name = 'lldb'
                     }
                 }

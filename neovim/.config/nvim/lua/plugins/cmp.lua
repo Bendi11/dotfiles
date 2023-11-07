@@ -1,21 +1,21 @@
-return function(use)
+return {
     --Pictograms next to nvim_cmp autocompletion suggestions
-    use {
+    {
         'onsails/lspkind-nvim',
-        requires = {
+        dependencies = {
             'mortepau/codicons.nvim'
         }
-    }
+    },
 
-    use {
+    {
         'saadparwaiz1/cmp_luasnip',
-        requires = { 'L3MON4D3/LuaSnip' }
-    }
+        dependencies = { 'L3MON4D3/LuaSnip' }
+    },
 
     --Autocompletion plugin
-    use {
+    {
         'hrsh7th/nvim-cmp',
-        requires = {
+        dependencies = {
             'L3MON4D3/LuaSnip',
             'onsails/lspkind-nvim',
             -- NVIM LSP client autocompletion source
@@ -122,5 +122,5 @@ return function(use)
             })
 
         end
-    }
-end
+    },
+}

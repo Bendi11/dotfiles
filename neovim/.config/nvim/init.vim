@@ -36,15 +36,11 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 "set indentexpr=nvim_treesitter#indentexpr()
 
-set termguicolors "Enable GUI coloring in the terminal
 syntax on
-set cursorline
 "let g:onedark_style = 'darker' "Make the color scheme darker than normal
 "LUA CONFIG
 
-lua << EOF
-require('plugins')
-EOF
+lua require('setup')
 
 au BufRead,BufNewFile *.ks set filetype=kerboscript
 filetype plugin indent on "Enable automatic indenting based on file type

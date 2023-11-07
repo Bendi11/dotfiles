@@ -2,7 +2,7 @@ return {
     --Helper to automatically download and install LSP servers
     {
         'williamboman/mason.nvim',
-        requires = {
+        dependencies = {
             'williamboman/mason-lspconfig.nvim'
         },
         after = {
@@ -12,7 +12,7 @@ return {
         config = function()
             local m_lspconfig = require'mason-lspconfig'
             require("mason").setup{
-                install_root_dir = require('lsp.glob').MASON_INSTALL_DIR
+                install_root_dir = require('plugins.lsp.glob').MASON_INSTALL_DIR
             }
             m_lspconfig.setup{
                 ensure_installed = {
@@ -23,7 +23,7 @@ return {
             }
 
             local default_opts = {
-                on_attach = function(_, bufnr) require('lsp.keys').set_buf_keymap(bufnr) end,
+                on_attach = function(_, bufnr) require('plugins.lsp.keys').set_buf_keymap(bufnr) end,
             }
 
             local ok, cmp = pcall(require, 'cmp_nvim_lsp')
@@ -34,7 +34,7 @@ return {
             local configs = {
                 function(server) require('lspconfig')[server].setup(default_opts) end,
             }
-            require('lsp.explicit_configs')(configs, default_opts)
+            require('plugins.lsp.explicit_configs')(configs, default_opts)
 
             m_lspconfig.setup_handlers(configs)
         end

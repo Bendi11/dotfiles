@@ -1,8 +1,8 @@
-return function(use)
-
-    use {
+return {
+    -- Status line that shows git, filetype, and LSP status
+    {
         'nvim-lualine/lualine.nvim',
-        requires = {
+        dependencies = {
             'kyazdani42/nvim-web-devicons',
         },
         --after = 'EdenEast/nightfox.nvim',
@@ -70,24 +70,25 @@ return function(use)
             		component = ' ',
             		progress = ' | ',
             		message = { pre = '(', post = ')'},
-            		percentage = { pre = '', post = '%% ' },
+            		percentage = { pre = '-', post = '%% ' },
             		title = { pre = '', post = ': ' },
             		lsp_client_name = { pre = '[', post = ']' },
             		spinner = { pre = '', post = '' },
             	},
-            	display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }, 'spinner' },
+            	display_components = { 'lsp_client_name', { 'percentage', 'message' } },
             	timer = { progress_enddelay = 500, spinner = 500, lsp_client_name_enddelay = 1000 },
             	spinner_symbols = { "⠋ ", "⠙ ", "⠹ ", "⠸ ", "⠼ ", "⠴ ", "⠦ ", "⠧ ", "⠇ ", "⠏ " },
             }
             
             require('lualine').setup(config)
         end
-    }
+    },
+
     --Extension to lualine showing LSP progress messages
-    use {
+    {
         'arkav/lualine-lsp-progress',
-        requires = {
+        dependencies = {
             'nvim-lualine/lualine.nvim',
         }
-    }
-end
+    },
+}
