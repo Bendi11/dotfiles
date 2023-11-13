@@ -46,7 +46,7 @@ return lush(function (added)
         -- CursorIM       { Cursor }, -- Like Cursor, but used when in IME mode |CursorIM|
         -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         CursorLine     { bg = colors.night[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-        -- Directory      { }, -- Directory names (and other special names in listings)
+        Directory      { fg = colors.sol[1] }, -- Directory names (and other special names in listings)
         -- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
         -- DiffChange     { }, -- Diff mode: Changed line |diff.txt|
         -- DiffDelete     { }, -- Diff mode: Deleted line |diff.txt|
@@ -130,7 +130,7 @@ return lush(function (added)
         Function       { fg = colors.earth[1] }, --   Function name (also: methods for classes)
 
         Statement      { fg = colors.mercury[1] }, -- (*) Any statement
-        Conditional    { fg = colors.earth[1] }, --   if, then, else, endif, switch, etc.
+        Conditional    { fg = colors.mars[1] }, --   if, then, else, endif, switch, etc.
         Repeat         { fg = colors.mars[1] }, --   for, do, while, etc.
         Label          { fg = colors.earth[1] }, --   case, default, etc.
         Operator       { fg = colors.mars[1] }, --   "sizeof", "+", "*", etc.
@@ -254,7 +254,7 @@ return lush(function (added)
         -- sym"@keyword"           { }, -- Keyword
         -- sym"@exception"         { }, -- Exception
         -- sym"@variable"          { }, -- Identifier
-        sym"@type"              { fg = colors.mercury[1] }, -- Type
+        -- sym"@type"              { fg = colors.mercury[1] }, -- Type
         -- sym"@type.definition"   { }, -- Typedef
         -- sym"@storageclass"      { }, -- StorageClass
         -- sym"@structure"         { }, -- Structure
