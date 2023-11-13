@@ -35,7 +35,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -font "FiraCode Nerd Font Mono 12" -show drun
+# bindsym $mod+d exec --no-startup-id rofi -font "FiraCode Nerd Font Mono 12" -show drun
+bindsym $mod+d exec --no-startup-id $HOME/.config/rofi/launchers/type-1/launcher.sh
 
 exec --no-startup-id start-pulseaudio-x11
 # exec --no-startup-id pa-applet
@@ -252,8 +253,8 @@ set_from_resource $term_color15    color15
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
     #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-    font pango:Font Awesome 5 Free Regular,FiraCode Nerd Font Mono 16
-    #font pango:FiraCode Nerd Font Mono 14
+    #font pango:Font Awesome 5 Free Regular,FiraCode Nerd Font Mono 16
+    font pango:FiraCode Nerd Font Mono 16
 	i3bar_command i3bar
 	status_command i3status-rs $HOME/.config/i3status-rust/config.toml
 	position top
@@ -263,7 +264,8 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background #222D31
+        #background #222D31
+        background #121214
         statusline #F9FAF9
         separator  #454947
 

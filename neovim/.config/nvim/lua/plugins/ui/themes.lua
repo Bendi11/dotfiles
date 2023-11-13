@@ -2,6 +2,8 @@ return {
     --OneDark from the Atom text editor
     'navarasu/onedark.nvim',
 
+    'rktjmp/lush.nvim',
+
     'rebelot/kanagawa.nvim',
 
     {
