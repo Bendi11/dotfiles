@@ -1,6 +1,29 @@
 local lush = require('lush')
 local hsl = lush.hsl
 
+local colors = {
+    night = {
+        hsl('#121214'),
+        hsl('#242424'),
+        hsl('#4e4e4f'),
+    },
+    mercury = {
+        hsl('#9b98a1'),
+    },
+    mars = {
+        hsl('#ad6242'),
+    },
+    venus = {
+        hsl('#c89d62'),
+    },
+    earth = {
+        hsl('#3b8ac4'),
+    },
+    sol = {
+        hsl('#fff4ea'),
+    }
+}
+
 ---@diagnostic disable: undefined-global
 return lush(function (added)
     local sym = added.sym
@@ -17,12 +40,12 @@ return lush(function (added)
         --
         -- ColorColumn    { }, -- Columns set with 'colorcolumn'
         -- Conceal        { bg = hsl('#00ff00')}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-        -- Cursor         { fg = hsl('#ffff00')}, -- Character under the cursor
+        Cursor         { }, -- Character under the cursor
         -- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
         -- lCursor        { Cursor }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
         -- CursorIM       { Cursor }, -- Like Cursor, but used when in IME mode |CursorIM|
         -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-        -- CursorLine     { }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+        CursorLine     { bg = colors.night[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
         -- Directory      { }, -- Directory names (and other special names in listings)
         -- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
         -- DiffChange     { }, -- Diff mode: Changed line |diff.txt|
@@ -33,36 +56,36 @@ return lush(function (added)
         -- TermCursorNC   { }, -- Cursor in an unfocused terminal
         -- ErrorMsg       { }, -- Error messages on the command line
         -- VertSplit      { }, -- Column separating vertically split windows
-        -- Folded         { }, -- Line used for closed folds
+        Folded         { fg = colors.night[3], bg = colors.night[2] }, -- Line used for closed folds
         -- FoldColumn     { }, -- 'foldcolumn'
-        -- SignColumn     { }, -- Column where |signs| are displayed
+        SignColumn     { fg = colors.earth[1] }, -- Column where |signs| are displayed
         -- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
         -- Substitute     { }, -- |:substitute| replacement text highlighting
-        -- LineNr         { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNr         { fg = colors.venus[1] }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
         -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
         -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-        -- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        CursorLineNr   { fg = colors.mars[1] }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
         -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
         -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-        -- MatchParen     { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-        -- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
+        MatchParen     { Cursor }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+        ModeMsg        { fg = colors.earth[1] }, -- 'showmode' message (e.g., "-- INSERT -- ")
         -- MsgArea        { }, -- Area for messages and cmdline
         -- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
         -- MoreMsg        { }, -- |more-prompt|
-        -- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        Normal         { fg = hsl('#9b98a1'), bg = hsl('#121214') }, -- Normal text
-        -- NormalFloat    { }, -- Normal text in floating windows.
-        -- FloatBorder    { }, -- Border of floating windows.
-        -- FloatTitle     { }, -- Title of floating windows.
+        NonText        { fg = colors.night[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+        Normal         { fg = colors.mercury[1], bg = colors.night[1] }, -- Normal text
+        NormalFloat    { Normal, bg = colors.night[1] }, -- Normal text in floating windows.
+        FloatBorder    { fg = colors.earth[1] }, -- Border of floating windows.
+        FloatTitle     { fg = colors.sol[1] }, -- Title of floating windows.
         -- NormalNC       { }, -- normal text in non-current windows
-        -- Pmenu          { }, -- Popup menu: Normal item.
-        -- PmenuSel       { }, -- Popup menu: Selected item.
+        Pmenu          { Normal, bg = colors.night[2] }, -- Popup menu: Normal item.
+        PmenuSel       { Pmenu, fg = colors.venus[1], bg = colors.mars[1] }, -- Popup menu: Selected item.
         -- PmenuKind      { }, -- Popup menu: Normal item "kind"
         -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
         -- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
         -- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
-        -- PmenuSbar      { }, -- Popup menu: Scrollbar.
-        -- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
+        PmenuSbar      { bg = colors.night[2] }, -- Popup menu: Scrollbar.
+        PmenuThumb     { bg = colors.mercury[1] }, -- Popup menu: Thumb of the scrollbar.
         -- Question       { }, -- |hit-enter| prompt and yes/no questions
         -- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         -- Search         { }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
@@ -71,13 +94,13 @@ return lush(function (added)
         -- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
         -- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
         -- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-        -- StatusLine     { }, -- Status line of current window
-        -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-        -- TabLine        { }, -- Tab pages line, not active tab page label
-        -- TabLineFill    { }, -- Tab pages line, where there are no labels
-        -- TabLineSel     { }, -- Tab pages line, active tab page label
-        -- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-        Visual         { bg = hsl('#ff00ff')}, -- Visual mode selection
+        StatusLine     { fg = colors.earth[1], bg = colors.night[2] }, -- Status line of current window
+        StatusLineNC   { StatusLine, bg = colors.night[1] }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+        TabLine        { fg = colors.mercury[1], bg = colors.night[1] }, -- Tab pages line, not active tab page label
+        TabLineFill    { TabLine }, -- Tab pages line, where there are no labels
+        TabLineSel     { TabLine, bg = colors.night[3] }, -- Tab pages line, active tab page label
+        Title          { fg = colors.sol[1] }, -- Titles for output from ":set all", ":autocmd" etc.
+        Visual         { bg = colors.night[2] }, -- Visual mode selection
         -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
         -- WarningMsg     { }, -- Warning messages
         -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -94,48 +117,48 @@ return lush(function (added)
         --
         -- Uncomment and edit if you want more specific syntax highlighting.
 
-        -- Comment        { }, -- Any comment
+        Comment        { fg = colors.night[3] }, -- Any comment
 
-        -- Constant       { }, -- (*) Any constant
-        -- String         { }, --   A string constant: "this is a string"
-        -- Character      { }, --   A character constant: 'c', '\n'
-        -- Number         { }, --   A number constant: 234, 0xff
-        -- Boolean        { }, --   A boolean constant: TRUE, false
-        -- Float          { }, --   A floating point constant: 2.3e10
+        Constant       { fg = colors.venus[1] }, -- (*) Any constant
+        String         { Constant, italic = true }, --   A string constant: "this is a string"
+        Character      { Constant }, --   A character constant: 'c', '\n'
+        Number         { fg = colors.earth[1] }, --   A number constant: 234, 0xff
+        Boolean        { fg = colors.mars[1] }, --   A boolean constant: TRUE, false
+        Float          { Number }, --   A floating point constant: 2.3e10
 
-        -- Identifier     { }, -- (*) Any variable name
-        -- Function       { }, --   Function name (also: methods for classes)
+        Identifier     { fg = colors.sol[1] }, -- (*) Any variable name
+        Function       { fg = colors.earth[1] }, --   Function name (also: methods for classes)
 
-        -- Statement      { }, -- (*) Any statement
-        -- Conditional    { }, --   if, then, else, endif, switch, etc.
-        -- Repeat         { }, --   for, do, while, etc.
-        -- Label          { }, --   case, default, etc.
-        -- Operator       { }, --   "sizeof", "+", "*", etc.
-        -- Keyword        { }, --   any other keyword
-        -- Exception      { }, --   try, catch, throw
+        Statement      { fg = colors.mercury[1] }, -- (*) Any statement
+        Conditional    { fg = colors.earth[1] }, --   if, then, else, endif, switch, etc.
+        Repeat         { fg = colors.mars[1] }, --   for, do, while, etc.
+        Label          { fg = colors.earth[1] }, --   case, default, etc.
+        Operator       { fg = colors.mars[1] }, --   "sizeof", "+", "*", etc.
+        Keyword        { fg = colors.mars[1] }, --   any other keyword
+        Exception      { fg = colors.venus[1] }, --   try, catch, throw
 
-        -- PreProc        { }, -- (*) Generic Preprocessor
-        -- Include        { }, --   Preprocessor #include
-        -- Define         { }, --   Preprocessor #define
-        -- Macro          { }, --   Same as Define
-        -- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
+        PreProc        { fg = colors.earth[1] }, -- (*) Generic Preprocessor
+        Include        { PreProc }, --   Preprocessor #include
+        Define         { PreProc }, --   Preprocessor #define
+        Macro          { PreProc, fg = colors.earth[1].da(10), gui = "italic" }, --   Same as Define
+        PreCondit      { PreProc }, --   Preprocessor #if, #else, #endif, etc.
 
-        -- Type           { }, -- (*) int, long, char, etc.
-        -- StorageClass   { }, --   static, register, volatile, etc.
-        -- Structure      { }, --   struct, union, enum, etc.
-        -- Typedef        { }, --   A typedef
+        Type           { fg = colors.venus[1] }, -- (*) int, long, char, etc.
+        StorageClass   { fg = colors.venus[1] }, --   static, register, volatile, etc.
+        Structure      { fg = colors.venus[1] }, --   struct, union, enum, etc.
+        Typedef        { fg = colors.mars[1] }, --   A typedef
 
-        -- Special        { }, -- (*) Any special symbol
-        -- SpecialChar    { }, --   Special character in a constant
-        -- Tag            { }, --   You can use CTRL-] on this
-        -- Delimiter      { }, --   Character that needs attention
-        -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
-        -- Debug          { }, --   Debugging statements
+        Special        { fg = colors.venus[1] }, -- (*) Any special symbol
+        SpecialChar    { fg = colors.earth[1] }, --   Special character in a constant
+        Tag            { }, --   You can use CTRL-] on this
+        Delimiter      { }, --   Character that needs attention
+        SpecialComment { fg = colors.earth[1] }, --   Special things inside a comment (e.g. '\n')
+        Debug          { fg = colors.mars[1] }, --   Debugging statements
 
-        -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
-        -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-        -- Error          { }, -- Any erroneous construct
-        -- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+        Underlined     { gui = "underline" }, -- Text that stands out, HTML links
+        Ignore         { fg = colors.night[3] }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+        Error          { fg = colors.mars[1], gui = "underline" }, -- Any erroneous construct
+        Todo           { fg = colors.mars[1], bg = colors.night[2] }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
         -- These groups are for the native LSP client and diagnostic system. Some
         -- other LSP clients may use these groups, or use their own. Consult your
@@ -198,17 +221,17 @@ return lush(function (added)
         -- sym"@text.literal"      { }, -- Comment
         -- sym"@text.reference"    { }, -- Identifier
         -- sym"@text.title"        { }, -- Title
-        -- sym"@text.uri"          { }, -- Underlined
+        sym"@text.uri"          { fg = colors.earth[1], gui = "underline" }, -- Underlined
         -- sym"@text.underline"    { }, -- Underlined
         -- sym"@text.todo"         { }, -- Todo
         -- sym"@comment"           { }, -- Comment
         -- sym"@punctuation"       { }, -- Delimiter
-        -- sym"@constant"          { }, -- Constant
-        -- sym"@constant.builtin"  { }, -- Special
+        sym"@constant"          { gui = "bold" }, -- Constant
+        sym"@constant.builtin"  { gui = "bold" }, -- Special
         -- sym"@constant.macro"    { }, -- Define
-        -- sym"@define"            { }, -- Define
+        sym"@define"            { gui = "bold" }, -- Define
         -- sym"@macro"             { }, -- Macro
-        -- sym"@string"            { }, -- String
+        sym"@string"            { fg = colors.venus[1].darken(25) }, -- String
         -- sym"@string.escape"     { }, -- SpecialChar
         -- sym"@string.special"    { }, -- SpecialChar
         -- sym"@character"         { }, -- Character
@@ -216,10 +239,10 @@ return lush(function (added)
         -- sym"@number"            { }, -- Number
         -- sym"@boolean"           { }, -- Boolean
         -- sym"@float"             { }, -- Float
-        -- sym"@function"          { }, -- Function
-        -- sym"@function.builtin"  { }, -- Special
-        -- sym"@function.macro"    { }, -- Macro
-        -- sym"@parameter"         { }, -- Identifier
+        sym"@function"          { fg = colors.earth[1] }, -- Function
+        sym"@function.builtin"  { }, -- Special
+        sym"@function.macro"    { gui = "italic" }, -- Macro
+        sym"@parameter"         { gui = "italic" }, -- Identifier
         -- sym"@method"            { }, -- Function
         -- sym"@field"             { }, -- Identifier
         -- sym"@property"          { }, -- Identifier
@@ -231,7 +254,7 @@ return lush(function (added)
         -- sym"@keyword"           { }, -- Keyword
         -- sym"@exception"         { }, -- Exception
         -- sym"@variable"          { }, -- Identifier
-        -- sym"@type"              { }, -- Type
+        sym"@type"              { fg = colors.mercury[1] }, -- Type
         -- sym"@type.definition"   { }, -- Typedef
         -- sym"@storageclass"      { }, -- StorageClass
         -- sym"@structure"         { }, -- Structure
