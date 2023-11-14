@@ -5,5 +5,7 @@ vim.opt.cursorline = true
 
 require('lazy').setup(
     "plugins",
-    {}
+    {
+
+    }
 )

@@ -130,7 +130,7 @@ return lush(function (added)
         Function       { fg = colors.earth[1] }, --   Function name (also: methods for classes)
 
         Statement      { fg = colors.mercury[1] }, -- (*) Any statement
-        Conditional    { fg = colors.mars[1] }, --   if, then, else, endif, switch, etc.
+        Conditional    { fg = colors.earth[1] }, --   if, then, else, endif, switch, etc.
         Repeat         { fg = colors.mars[1] }, --   for, do, while, etc.
         Label          { fg = colors.earth[1] }, --   case, default, etc.
         Operator       { fg = colors.mars[1] }, --   "sizeof", "+", "*", etc.

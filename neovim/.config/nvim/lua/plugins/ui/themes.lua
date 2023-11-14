@@ -4,13 +4,18 @@ return {
 
     'rktjmp/lush.nvim',
 
+    {
+        dir = vim.fn.stdpath('config') .. '/orbit',
+        dependencies = { 'rktjmp/lush.nvim' },
+        config = function()
+            vim.cmd("colorscheme orbit")
+        end,
+    },
+
     'rebelot/kanagawa.nvim',
 
     {
         'savq/melange',
-        config = function()
-            vim.cmd("colorscheme melange")
-        end
     },
 
     --[[use {
