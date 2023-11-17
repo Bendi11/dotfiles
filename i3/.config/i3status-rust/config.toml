@@ -47,7 +47,7 @@ cmd = "pavucontrol"
 [[block]]
 block = "net"
 missing_format = "No Wireless"
-format = "$icon $ssid"
+format = "$icon {$ssid|$ip|No Connection}"
 
 [[block.click]]
 button = "left"

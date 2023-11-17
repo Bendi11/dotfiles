@@ -3,7 +3,7 @@ local hsl = lush.hsl
 
 local colors = {
     night = {
-        hsl('#121214'),
+        '#121214',
         hsl('#242424'),
         hsl('#4e4e4f'),
     },
@@ -28,6 +28,7 @@ local colors = {
 ---@diagnostic disable: undefined-global
 return lush(function (added)
     local sym = added.sym
+
     return {
         -- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
         -- groups, mostly used for styling UI elements.
@@ -188,7 +189,7 @@ return lush(function (added)
         -- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
         DiagnosticUnderlineError   { sp = colors.mars[2].da(60), underline = true } , -- Used to underline "Error" diagnostics.
         DiagnosticUnderlineWarn    { DiagnosticUnderlineError, sp = colors.mars[1].da(60) } , -- Used to underline "Warn" diagnostics.
-        -- DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
+        DiagnosticUnderlineInfo    { sp = colors.earth[1].da(20), underline = true } , -- Used to underline "Info" diagnostics.
         -- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
         -- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
         -- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
@@ -246,7 +247,7 @@ return lush(function (added)
         sym"@parameter"         { gui = "italic" }, -- Identifier
         -- sym"@method"            { }, -- Function
         -- sym"@field"             { }, -- Identifier
-        -- sym"@property"          { }, -- Identifier
+        sym"@property"          { }, -- Identifier
         -- sym"@constructor"       { }, -- Special
         -- sym"@conditional"       { }, -- Conditional
         -- sym"@repeat"            { }, -- Repeat
@@ -263,6 +264,16 @@ return lush(function (added)
         -- sym"@include"           { }, -- Include
         -- sym"@preproc"           { }, -- PreProc
         -- sym"@debug"             { }, -- Debug
-        -- sym"@tag"               { }, -- Tag
+        -- sym"@tag"               { }, -- Tag 
+
+        CmpItemAbbrMatch { Normal },
+        CmpItemKindVariable { Identifier },
+        CmpItemKindInterface { Typedef },
+        CmpItemKindFunction { Function },
+        CmpItemKindMethod { CmpItemKindFunction },
+
+        CmpItemKindKeyword { Keyword },
+        CmpItemKindProperty { sym"@property" },
+        CmpItemKindUnit { sym"@constant.builtin" },
     }
 end)
