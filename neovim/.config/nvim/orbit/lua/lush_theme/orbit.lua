@@ -3,25 +3,40 @@ local hsl = lush.hsl
 
 local colors = {
     night = {
-        '#121214',
+        hsl('#09090B'),
+        hsl('#121214'),
+        hsl('#1B1B1C'),
         hsl('#242424'),
-        hsl('#4e4e4f'),
     },
     mercury = {
         hsl('#9b98a1'),
+        hsl('#8F8B96'),
+        hsl('#898492'),
+        hsl('#837C8E'),
     },
     mars = {
-        hsl('#ad6242'),
-        hsl('#a34a3e'),
+        hsl('#AD6242'),
+        hsl('#964632'),
+        hsl('#8A382A'),
+        hsl('#7E2A22'),
     },
     venus = {
-        hsl('#c89d62'),
+        hsl('#C49656'),
+        hsl('#BF8E4A'),
+        hsl('#B48349'),
+        hsl('#A87748'),
     },
     earth = {
-        hsl('#3b8ac4'),
+        hsl('#3793B2'),
+        hsl('#3689B3'),
+        hsl('#2F71A1'),
+        hsl('#23577D'),
     },
     sol = {
         hsl('#fff4ea'),
+        hsl('#FFEDDB'),
+        hsl('#FFE8D1'),
+        hsl('#FFE4C7'),
     }
 }
 
@@ -41,13 +56,13 @@ return lush(function (added)
         -- See :h highlight-groups
         --
         -- ColorColumn    { }, -- Columns set with 'colorcolumn'
-        Conceal        { fg = colors.night[3] }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+        Conceal        { fg = colors.night[4] }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
         Cursor         { }, -- Character under the cursor
         CurSearch      { fg = colors.night[1], bg = colors.venus[1] }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
         -- lCursor        { Cursor }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
         -- CursorIM       { Cursor }, -- Like Cursor, but used when in IME mode |CursorIM|
         -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-        CursorLine     { bg = colors.night[2] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+        CursorLine     { bg = colors.night[1] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
         Directory      { fg = colors.sol[1] }, -- Directory names (and other special names in listings)
         -- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
         -- DiffChange     { }, -- Diff mode: Changed line |diff.txt|
@@ -56,39 +71,39 @@ return lush(function (added)
         -- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
         -- TermCursor     { }, -- Cursor in a focused terminal
         -- TermCursorNC   { }, -- Cursor in an unfocused terminal
-        ErrorMsg       { fg = colors.mars[2] }, -- Error messages on the command line
-        VertSplit      { fg = colors.night[2] }, -- Column separating vertically split windows
-        Folded         { fg = colors.night[3], bg = colors.night[2] }, -- Line used for closed folds
+        ErrorMsg       { fg = colors.mars[4] }, -- Error messages on the command line
+        VertSplit      { fg = colors.night[3] }, -- Column separating vertically split windows
+        Folded         { fg = colors.night[4], bg = colors.night[3] }, -- Line used for closed folds
         FoldColumn     { fg = colors.earth[1] }, -- 'foldcolumn'
         SignColumn     { fg = colors.earth[1] }, -- Column where |signs| are displayed
         IncSearch      { fg = colors.earth[1], bg = colors.night[2] }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
         Substitute     { CurSearch }, -- |:substitute| replacement text highlighting
-        LineNr         { fg = colors.venus[1] }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+        LineNr         { fg = colors.venus[3] }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
         -- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
         -- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-        CursorLineNr   { fg = colors.mars[1] }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        CursorLineNr   { fg = colors.mars[2] }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
         -- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
         -- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
         MatchParen     { bg = colors.night[3] }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
         ModeMsg        { fg = colors.earth[1] }, -- 'showmode' message (e.g., "-- INSERT -- ")
-        MsgArea        { fg = colors.mercury[1] }, -- Area for messages and cmdline
+        MsgArea        { fg = colors.mercury[3] }, -- Area for messages and cmdline
         MsgSeparator   { fg = colors.earth[1] }, -- Separator for scrolled messages, `msgsep` flag of 'display'
         MoreMsg        { fg = colors.earth[1] }, -- |more-prompt|
         NonText        { fg = colors.night[2] }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-        Normal         { fg = colors.mercury[1], bg = colors.night[1] }, -- Normal text
-        NormalFloat    { Normal, bg = colors.night[1] }, -- Normal text in floating windows.
-        FloatBorder    { fg = colors.earth[1] }, -- Border of floating windows.
-        FloatTitle     { fg = colors.sol[1] }, -- Title of floating windows.
+        Normal         { fg = colors.mercury[2], bg = colors.night[2] }, -- Normal text
+        NormalFloat    { Normal, bg = colors.night[3] }, -- Normal text in floating windows.
+        FloatBorder    { fg = colors.earth[4] }, -- Border of floating windows.
+        FloatTitle     { fg = colors.sol[3] }, -- Title of floating windows.
         -- NormalNC       { }, -- normal text in non-current windows
-        Pmenu          { Normal, bg = colors.night[2] }, -- Popup menu: Normal item.
-        PmenuSel       { Pmenu, fg = colors.venus[1], bg = colors.mars[1] }, -- Popup menu: Selected item.
+        Pmenu          { Normal, bg = colors.night[3] }, -- Popup menu: Normal item.
+        PmenuSel       { Pmenu, fg = colors.sol[1], bg = colors.mercury[4] }, -- Popup menu: Selected item.
         -- PmenuKind      { }, -- Popup menu: Normal item "kind"
         -- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
         -- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
         -- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
         PmenuSbar      { bg = colors.night[2] }, -- Popup menu: Scrollbar.
         PmenuThumb     { bg = colors.mercury[1] }, -- Popup menu: Thumb of the scrollbar.
-        Question       { fg = colors.earth[1], gui = "bold" }, -- |hit-enter| prompt and yes/no questions
+        Question       { fg = colors.earth[3], gui = "bold" }, -- |hit-enter| prompt and yes/no questions
         -- QuickFixLine   { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
         Search         { CurSearch }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
         -- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
@@ -96,13 +111,13 @@ return lush(function (added)
         -- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
         -- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
         -- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-        StatusLine     { fg = colors.earth[1], bg = colors.night[2] }, -- Status line of current window
+        StatusLine     { fg = colors.earth[4], bg = colors.night[2] }, -- Status line of current window
         StatusLineNC   { StatusLine, bg = colors.night[1] }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
         TabLine        { fg = colors.mercury[1], bg = colors.night[1] }, -- Tab pages line, not active tab page label
         TabLineFill    { TabLine }, -- Tab pages line, where there are no labels
         TabLineSel     { TabLine, bg = colors.night[3] }, -- Tab pages line, active tab page label
         Title          { fg = colors.sol[1] }, -- Titles for output from ":set all", ":autocmd" etc.
-        Visual         { bg = colors.night[2] }, -- Visual mode selection
+        Visual         { bg = colors.night[3] }, -- Visual mode selection
         -- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
         WarningMsg     { fg = colors.mars[2] }, -- Warning messages
         -- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -119,39 +134,39 @@ return lush(function (added)
         --
         -- Uncomment and edit if you want more specific syntax highlighting.
 
-        Comment        { fg = colors.night[3] }, -- Any comment
+        Comment        { fg = colors.night[4] }, -- Any comment
 
         Constant       { fg = colors.venus[1] }, -- (*) Any constant
-        String         { Constant, italic = true }, --   A string constant: "this is a string"
-        Character      { Constant }, --   A character constant: 'c', '\n'
+        String         { Constant, fg = colors.venus[4], italic = true }, --   A string constant: "this is a string"
+        Character      { Constant, fg = colors.venus[4] }, --   A character constant: 'c', '\n'
         Number         { fg = colors.earth[1] }, --   A number constant: 234, 0xff
-        Boolean        { fg = colors.mars[1] }, --   A boolean constant: TRUE, false
-        Float          { Number }, --   A floating point constant: 2.3e10
+        Boolean        { fg = colors.mars[3] }, --   A boolean constant: TRUE, false
+        Float          { Number, fg = colors.earth[3] }, --   A floating point constant: 2.3e10
 
-        Identifier     { fg = colors.sol[1] }, -- (*) Any variable name
+        Identifier     { fg = colors.sol[2] }, -- (*) Any variable name
         Function       { fg = colors.earth[1] }, --   Function name (also: methods for classes)
 
-        Statement      { fg = colors.mercury[1] }, -- (*) Any statement
-        Conditional    { fg = colors.earth[1] }, --   if, then, else, endif, switch, etc.
+        Statement      { fg = colors.mercury[2] }, -- (*) Any statement
+        Conditional    { fg = colors.mars[2] }, --   if, then, else, endif, switch, etc.
         Repeat         { fg = colors.mars[1] }, --   for, do, while, etc.
         Label          { fg = colors.earth[1] }, --   case, default, etc.
-        Operator       { fg = colors.mars[2] }, --   "sizeof", "+", "*", etc.
+        Operator       { fg = colors.mars[3] }, --   "sizeof", "+", "*", etc.
         Keyword        { fg = colors.mars[1] }, --   any other keyword
         Exception      { fg = colors.venus[1] }, --   try, catch, throw
 
-        PreProc        { fg = colors.earth[1] }, -- (*) Generic Preprocessor
+        PreProc        { fg = colors.earth[2] }, -- (*) Generic Preprocessor
         Include        { PreProc }, --   Preprocessor #include
         Define         { PreProc }, --   Preprocessor #define
-        Macro          { PreProc, fg = colors.earth[1].da(10), gui = "italic" }, --   Same as Define
+        Macro          { PreProc, fg = colors.earth[3], gui = "italic" }, --   Same as Define
         PreCondit      { PreProc }, --   Preprocessor #if, #else, #endif, etc.
 
-        Type           { fg = colors.venus[1] }, -- (*) int, long, char, etc.
+        Type           { fg = colors.venus[4] }, -- (*) int, long, char, etc.
         StorageClass   { fg = colors.venus[1] }, --   static, register, volatile, etc.
         Structure      { fg = colors.venus[1] }, --   struct, union, enum, etc.
-        Typedef        { fg = colors.mars[1] }, --   A typedef
+        Typedef        { fg = colors.mars[2] }, --   A typedef
 
         Special        { fg = colors.venus[1] }, -- (*) Any special symbol
-        SpecialChar    { fg = colors.earth[1] }, --   Special character in a constant
+        SpecialChar    { fg = colors.earth[3] }, --   Special character in a constant
         Tag            { }, --   You can use CTRL-] on this
         Delimiter      { }, --   Character that needs attention
         SpecialComment { fg = colors.earth[1] }, --   Special things inside a comment (e.g. '\n')
@@ -159,7 +174,7 @@ return lush(function (added)
 
         Underlined     { gui = "underline" }, -- Text that stands out, HTML links
         Ignore         { fg = colors.night[3] }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-        Error          { fg = colors.mars[2], gui = "underline" }, -- Any erroneous construct
+        Error          { fg = colors.mars[4], gui = "underline" }, -- Any erroneous construct
         Todo           { fg = colors.mars[1], bg = colors.night[2] }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
         -- These groups are for the native LSP client and diagnostic system. Some
@@ -177,19 +192,19 @@ return lush(function (added)
 
         -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
         --
-        DiagnosticError            { fg = colors.mars[2] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticError            { fg = colors.mars[4] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         DiagnosticWarn             { fg = colors.mars[1] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticInfo             { fg = colors.mercury[1] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-        DiagnosticHint             { fg = colors.earth[1] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticInfo             { fg = colors.mercury[4] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+        DiagnosticHint             { fg = colors.earth[4] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         DiagnosticOk               { fg = colors.night[3] } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
         -- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
         -- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
         -- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
         -- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
         -- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-        DiagnosticUnderlineError   { sp = colors.mars[2].da(60), underline = true } , -- Used to underline "Error" diagnostics.
-        DiagnosticUnderlineWarn    { DiagnosticUnderlineError, sp = colors.mars[1].da(60) } , -- Used to underline "Warn" diagnostics.
-        DiagnosticUnderlineInfo    { sp = colors.earth[1].da(20), underline = true } , -- Used to underline "Info" diagnostics.
+        DiagnosticUnderlineError   { sp = colors.mars[4], underline = true } , -- Used to underline "Error" diagnostics.
+        DiagnosticUnderlineWarn    { DiagnosticUnderlineError, sp = colors.mars[1] } , -- Used to underline "Warn" diagnostics.
+        DiagnosticUnderlineInfo    { sp = colors.earth[4], underline = true } , -- Used to underline "Info" diagnostics.
         -- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
         -- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
         -- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
@@ -223,17 +238,17 @@ return lush(function (added)
         -- sym"@text.literal"      { }, -- Comment
         -- sym"@text.reference"    { }, -- Identifier
         -- sym"@text.title"        { }, -- Title
-        sym"@text.uri"          { fg = colors.earth[1], gui = "underline" }, -- Underlined
+        sym"@text.uri"          { fg = colors.earth[2], gui = "underline" }, -- Underlined
         -- sym"@text.underline"    { }, -- Underlined
         -- sym"@text.todo"         { }, -- Todo
         -- sym"@comment"           { }, -- Comment
         -- sym"@punctuation"       { }, -- Delimiter
-        sym"@constant"          { gui = "bold" }, -- Constant
-        sym"@constant.builtin"  { gui = "bold" }, -- Special
+        sym"@constant"          { gui = "bold", fg = colors.venus[1] }, -- Constant
+        sym"@constant.builtin"  { gui = "bold", fg = colors.venus[2] }, -- Special
         -- sym"@constant.macro"    { }, -- Define
         sym"@define"            { gui = "bold" }, -- Define
         -- sym"@macro"             { }, -- Macro
-        sym"@string"            { fg = colors.venus[1].darken(25) }, -- String
+        sym"@string"            { fg = colors.venus[4] }, -- String
         -- sym"@string.escape"     { }, -- SpecialChar
         -- sym"@string.special"    { }, -- SpecialChar
         -- sym"@character"         { }, -- Character
@@ -241,9 +256,9 @@ return lush(function (added)
         -- sym"@number"            { }, -- Number
         -- sym"@boolean"           { }, -- Boolean
         -- sym"@float"             { }, -- Float
-        sym"@function"          { fg = colors.earth[1] }, -- Function
-        sym"@function.builtin"  { }, -- Special
-        sym"@function.macro"    { gui = "italic" }, -- Macro
+        sym"@function"          { Function }, -- Function
+        sym"@function.builtin"  { Function, fg = colors.mercury[1] }, -- Special
+        sym"@function.macro"    { Macro, gui = "italic" }, -- Macro
         sym"@parameter"         { gui = "italic" }, -- Identifier
         -- sym"@method"            { }, -- Function
         -- sym"@field"             { }, -- Identifier
@@ -266,11 +281,11 @@ return lush(function (added)
         -- sym"@debug"             { }, -- Debug
         -- sym"@tag"               { }, -- Tag 
 
-        CmpItemAbbrMatch { Normal },
+        CmpItemAbbrMatch { fg = colors.mars[1] },
         CmpItemKindVariable { Identifier },
         CmpItemKindInterface { Typedef },
         CmpItemKindFunction { Function },
-        CmpItemKindMethod { CmpItemKindFunction },
+        CmpItemKindMethod { fg = colors.mercury[1] },
 
         CmpItemKindKeyword { Keyword },
         CmpItemKindProperty { sym"@property" },

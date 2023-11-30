@@ -1,12 +1,8 @@
 return {
-    require('plugins.lsp.install'),
+    --Preset configurations for Neovim's LSP client
+    'neovim/nvim-lspconfig',
+
+    require('plugins.lsp.mason'),
 
     'simrat39/rust-tools.nvim',
-
-    'Freedzone/kerbovim',
-
-    --Preset configurations for Neovim's LSP client
-    {
-        'neovim/nvim-lspconfig',
-    },
 }
