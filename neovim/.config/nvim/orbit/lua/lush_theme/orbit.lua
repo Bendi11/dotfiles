@@ -64,16 +64,16 @@ return lush(function (added)
         -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         CursorLine     { bg = colors.night[1] }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
         Directory      { fg = colors.sol[1] }, -- Directory names (and other special names in listings)
-        -- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
-        -- DiffChange     { }, -- Diff mode: Changed line |diff.txt|
-        -- DiffDelete     { }, -- Diff mode: Deleted line |diff.txt|
-        -- DiffText       { }, -- Diff mode: Changed text within a changed line |diff.txt|
+        DiffAdd        { fg = colors.sol[1], bg = colors.earth[1] }, -- Diff mode: Added line |diff.txt|
+        DiffChange     { fg = colors.sol[1], bg = colors.venus[4] }, -- Diff mode: Changed line |diff.txt|
+        DiffDelete     { fg = colors.sol[1], bg = colors.mars[4]  }, -- Diff mode: Deleted line |diff.txt|
+        DiffText       { fg = colors.sol[3], bg = colors.mars[3]  }, -- Diff mode: Changed text within a changed line |diff.txt|
         -- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
         -- TermCursor     { }, -- Cursor in a focused terminal
         -- TermCursorNC   { }, -- Cursor in an unfocused terminal
         ErrorMsg       { fg = colors.mars[4] }, -- Error messages on the command line
         VertSplit      { fg = colors.night[3] }, -- Column separating vertically split windows
-        Folded         { fg = colors.night[4], bg = colors.night[3] }, -- Line used for closed folds
+        Folded         { fg = colors.night[1], bg = colors.night[4] }, -- Line used for closed folds
         FoldColumn     { fg = colors.earth[1] }, -- 'foldcolumn'
         SignColumn     { fg = colors.earth[1] }, -- Column where |signs| are displayed
         IncSearch      { fg = colors.earth[1], bg = colors.night[2] }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
@@ -235,51 +235,51 @@ return lush(function (added)
         --
         -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
-        -- sym"@text.literal"      { }, -- Comment
-        -- sym"@text.reference"    { }, -- Identifier
-        -- sym"@text.title"        { }, -- Title
+        sym"@text.literal"      { Comment }, -- Comment
+        sym"@text.reference"    { Identifier }, -- Identifier
+        sym"@text.title"        { Title }, -- Title
         sym"@text.uri"          { fg = colors.earth[2], gui = "underline" }, -- Underlined
-        -- sym"@text.underline"    { }, -- Underlined
-        -- sym"@text.todo"         { }, -- Todo
-        -- sym"@comment"           { }, -- Comment
-        -- sym"@punctuation"       { }, -- Delimiter
-        sym"@constant"          { gui = "bold", fg = colors.venus[1] }, -- Constant
-        sym"@constant.builtin"  { gui = "bold", fg = colors.venus[2] }, -- Special
-        -- sym"@constant.macro"    { }, -- Define
-        sym"@define"            { gui = "bold" }, -- Define
-        -- sym"@macro"             { }, -- Macro
-        sym"@string"            { fg = colors.venus[4] }, -- String
-        -- sym"@string.escape"     { }, -- SpecialChar
-        -- sym"@string.special"    { }, -- SpecialChar
-        -- sym"@character"         { }, -- Character
-        -- sym"@character.special" { }, -- SpecialChar
-        -- sym"@number"            { }, -- Number
-        -- sym"@boolean"           { }, -- Boolean
-        -- sym"@float"             { }, -- Float
+        sym"@text.underline"    { Underlined }, -- Underlined
+        sym"@text.todo"         { Todo }, -- Todo
+        sym"@comment"           { Comment }, -- Comment
+        sym"@punctuation"       { Delimiter }, -- Delimiter
+        sym"@constant"          { Constant, gui = "bold", fg = colors.venus[1] }, -- Constant
+        sym"@constant.builtin"  { Constant, gui = "bold", fg = colors.venus[2] }, -- Special
+        sym"@constant.macro"    { Macro, gui = "bold" }, -- Define
+        sym"@define"            { Constant, gui = "bold" }, -- Define
+        sym"@macro"             { Macro }, -- Macro
+        sym"@string"            { String, fg = colors.venus[4] }, -- String
+        sym"@string.escape"     { SpecialChar }, -- SpecialChar
+        sym"@string.special"    { SpecialChar }, -- SpecialChar
+        sym"@character"         { Character }, -- Character
+        sym"@character.special" { SpecialChar }, -- SpecialChar
+        sym"@number"            { Number }, -- Number
+        sym"@boolean"           { Boolean }, -- Boolean
+        sym"@float"             { Float }, -- Float
         sym"@function"          { Function }, -- Function
         sym"@function.builtin"  { Function, fg = colors.mercury[1] }, -- Special
         sym"@function.macro"    { Macro, gui = "italic" }, -- Macro
         sym"@parameter"         { gui = "italic" }, -- Identifier
-        -- sym"@method"            { }, -- Function
-        -- sym"@field"             { }, -- Identifier
-        sym"@property"          { }, -- Identifier
-        -- sym"@constructor"       { }, -- Special
-        -- sym"@conditional"       { }, -- Conditional
-        -- sym"@repeat"            { }, -- Repeat
-        -- sym"@label"             { }, -- Label
-        -- sym"@operator"          { }, -- Operator
-        -- sym"@keyword"           { }, -- Keyword
-        -- sym"@exception"         { }, -- Exception
-        -- sym"@variable"          { }, -- Identifier
-        -- sym"@type"              { fg = colors.mercury[1] }, -- Type
-        -- sym"@type.definition"   { }, -- Typedef
-        -- sym"@storageclass"      { }, -- StorageClass
-        -- sym"@structure"         { }, -- Structure
-        -- sym"@namespace"         { }, -- Identifier
-        -- sym"@include"           { }, -- Include
-        -- sym"@preproc"           { }, -- PreProc
-        -- sym"@debug"             { }, -- Debug
-        -- sym"@tag"               { }, -- Tag 
+        sym"@method"            { Function }, -- Function
+        sym"@field"             { fg = colors.mercury[1] }, -- Identifier
+        sym"@property"          { fg = colors.earth[1] }, -- Identifier
+        sym"@constructor"       { Type }, -- Special
+        sym"@conditional"       { Conditional }, -- Conditional
+        sym"@repeat"            { Repeat }, -- Repeat
+        sym"@label"             { Label }, -- Label
+        sym"@operator"          { Operator }, -- Operator
+        sym"@keyword"           { Keyword }, -- Keyword
+        sym"@exception"         { Exception }, -- Exception
+        sym"@variable"          { Identifier }, -- Identifier
+        sym"@type"              { Type }, -- Type
+        sym"@type.definition"   { Typedef }, -- Typedef
+        sym"@storageclass"      { StorageClass }, -- StorageClass
+        sym"@structure"         { Structure }, -- Structure
+        sym"@namespace"         { fg = colors.venus[3] }, -- Identifier
+        sym"@include"           { Macro }, -- Include
+        sym"@preproc"           { Macro }, -- PreProc
+        sym"@debug"             { Debug }, -- Debug
+        sym"@tag"               { Tag }, -- Tag 
 
         CmpItemAbbrMatch { fg = colors.mars[1] },
         CmpItemKindVariable { Identifier },

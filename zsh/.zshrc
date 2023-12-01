@@ -17,3 +17,4 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.dotnet/tools:/usr/share/dotnet"
+export PATH="$PATH:$HOME/.go/bin"
