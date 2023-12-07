@@ -5,7 +5,7 @@ return {
     'rktjmp/lush.nvim',
 
     {
-        dir = vim.fn.stdpath('config') .. '/orbit',
+        dir = '~/dev/minis/orbit-nvim',
         dependencies = { 'rktjmp/lush.nvim' },
         config = function()
             vim.cmd("colorscheme orbit")
