@@ -27,7 +27,9 @@ return {
                 handlers,
                 {
                     __index = function ()
-                        return function(server_name) require('lspconfig')[server_name]:setup(default_lsp_config) end
+                        return function(server_name)
+                            require('lspconfig')[server_name].setup(default_lsp_config)
+                        end
                     end
                 }
             )
