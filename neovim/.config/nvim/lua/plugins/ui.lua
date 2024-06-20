@@ -22,12 +22,12 @@ return {
         end
     },
     --Indent lines
-    {
+    --[[{
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             require('ibl').setup()
         end
-    },
+    },]]--
     -- Icons for nvim-cmp classifications
     {
         'kyazdani42/nvim-web-devicons', --Additional icons for file tree and completion menu

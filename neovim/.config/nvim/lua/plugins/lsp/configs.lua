@@ -1,8 +1,36 @@
-return function(handlers, opts)
-    handlers['arduino_language_server'] = function(servername)
-        local server = require('lspconfig')[servername]
-        local FQBN = "megaTinyCore:megaavr:atxy7"
-        opts = vim.tbl_deep_extend(
+local cmp_ok, cmp = pcall(require, 'cmp_nvim_lsp')
+if not cmp_ok then
+    vim.notify('cmp-nvim-lsp not available, completion keymaps will not be set', vim.log.levels.ERROR)
+end
+
+local lspconfig_ok, lspconfig = pcall(require, 'lspconfig')
+if not lspconfig_ok then
+    vim.notify('lspconfig not loaded when configuring LSP servers', vim.log.levels.ERROR)
+    return {}
+end
+
+--Setup keymaps for the buffer that a language server is attached to
+local opts = {
+    on_attach = function(_, bufnr) require('plugins.lsp.keys').set_buf_keymap(bufnr) end,
+    capabilities = cmp and cmp.default_capabilities() or nil,
+}
+
+
+return {
+    function()
+        return function (servername)
+            if servername ~= nil then
+               vim.notify('servername is nil', vim.log.levels.ERROR)
+                return
+            end
+
+            lspconfig[servername].setup(opts)
+        end
+    end,
+    ["arduino_language_server"] = function(servername)
+        local server = lspconfig[servername]
+        local FQBN = "arduino:avr:nano"
+        local ardu_opts = vim.tbl_deep_extend(
             'force',
             opts,
             {
@@ -10,18 +38,18 @@ return function(handlers, opts)
                     "arduino-language-server",
                     "-cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
                     "-fqbn", FQBN,
-                    "-cli", vim.fn.expand("~/.local/bin/arduino-cli"),
+                    "-cli", vim.fn.expand("/usr/bin/arduino-cli"),
                     "-clangd", "/usr/bin/clangd"
                 }
             }
 
         )
 
-        server:setup(opts)
-    end
+        server.setup(ardu_opts)
+    end,
 
-    handlers['tailwindcss'] = function(servername)
-        require('lspconfig')[servername].setup {
+    ["tailwindcss"] = function(servername)
+        lspconfig[servername].setup {
             filetypes = {
                 "css",
                 "scss",
@@ -50,10 +78,10 @@ return function(handlers, opts)
                 'windi.config.ts'
             ),
         }
-    end
+    end,
 
-    handlers['lua_ls'] = function(servername)
-        local server = require('lspconfig')[servername]
+    ["lua_ls"] = function(servername)
+        local server = lspconfig[servername]
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
         table.insert(runtime_path, "lua/?/init.lua")
@@ -79,10 +107,10 @@ return function(handlers, opts)
         )
 
         server.setup(lua_opts)
-    end
+    end,
 
-    handlers['pyright'] = function(servername)
-        local server = require('lspconfig')[servername]
+    ["pyright"] = function(servername)
+        local server = lspconfig[servername]
 
         local py_opts = vim.tbl_deep_extend(
             'force',
@@ -97,10 +125,10 @@ return function(handlers, opts)
         )
 
         server.setup(py_opts)
-    end
+    end,
 
-    handlers['rust_analyzer'] = function(servername)
-        local server = require('lspconfig')[servername]
+    ["rust_analyzer"] = function(servername)
+        local server = lspconfig[servername]
         local ok, rust_tools = pcall(require, 'rust-tools')
         if not ok then
             vim.notify('Failed to find rust tools installed')
@@ -140,5 +168,4 @@ return function(handlers, opts)
             rust_tools.setup(rustopts)
         end
     end
-
-end
+}

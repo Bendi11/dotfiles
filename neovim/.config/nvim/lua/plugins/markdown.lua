@@ -5,6 +5,23 @@ return {
     },
 
     {
+        'lervag/vimtex',
+        lazy = false,
+        config = function ()
+            vim.g.vimtex_view_method = 'zathura'
+            vim.g.tex_conceal = 'adbmg'
+        end
+    },
+
+    {
+        'jbyuki/nabla.nvim',
+        config = function ()
+        local opts = {noremap = true, silent = true}
+            vim.keymap.set('n', '<leader>p',  function() require('nabla').popup({border = 'rounded'}) end, opts);
+        end
+    },
+
+    {
         'renerocksai/telekasten.nvim',
         dependencies = {
             'nvim-telescope/telescope.nvim',

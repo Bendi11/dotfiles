@@ -10,32 +10,8 @@ return {
             'cmp-nvim-lsp',
         },
         config = function()
-            local ok, cmp = pcall(require, 'cmp_nvim_lsp')
-            if not ok then
-                vim.notify('cmp-nvim-lsp not available, completion keymaps will not be set', 'error')
-            end
-
-            --Setup keymaps for the buffer that a language server is attached to
-            local default_lsp_config = {
-                on_attach = function(_, bufnr) require('plugins.lsp.keys').set_buf_keymap(bufnr) end,
-                capabilities = cmp and cmp.default_capabilities() or nil,
-            }
-
             --Setup an LSP server handler table for mason-lspconfig that will setup all servers installed with mason-lspconfig by default 
-            local handlers = {}
-            setmetatable(
-                handlers,
-                {
-                    __index = function ()
-                        return function(server_name)
-                            require('lspconfig')[server_name].setup(default_lsp_config)
-                        end
-                    end
-                }
-            )
-
-            --Apply existing LSP configurations
-            require('plugins.lsp.configs')(handlers, default_lsp_config)
+            local handlers = require('plugins.lsp.configs')
 
             require("mason").setup{
                 install_root_dir = require('plugins.lsp.glob').MASON_INSTALL_DIR
@@ -47,9 +23,9 @@ return {
                     'lua_ls',
                     'clangd',
                 },
-
-                handlers = handlers,
             }
+
+            require('mason-lspconfig').setup_handlers(handlers)
         end
     },
 
