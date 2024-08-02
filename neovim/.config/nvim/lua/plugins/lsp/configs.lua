@@ -17,18 +17,16 @@ local opts = {
 
 
 return {
-    function()
-        return function (servername)
-            if servername ~= nil then
-               vim.notify('servername is nil', vim.log.levels.ERROR)
-                return
-            end
-
-            lspconfig[servername].setup(opts)
+    function (servername)
+        if servername == nil then
+            vim.notify('servername is nil', vim.log.levels.ERROR)
+            return
         end
+
+        lspconfig[servername].setup(opts)
     end,
-    ["arduino_language_server"] = function(servername)
-        local server = lspconfig[servername]
+    ["arduino_language_server"] = function()
+        local server = lspconfig.arduino_language_server
         local FQBN = "arduino:avr:nano"
         local ardu_opts = vim.tbl_deep_extend(
             'force',
@@ -48,8 +46,8 @@ return {
         server.setup(ardu_opts)
     end,
 
-    ["tailwindcss"] = function(servername)
-        lspconfig[servername].setup {
+    ["tailwindcss"] = function()
+        lspconfig.tailwindcss.setup {
             filetypes = {
                 "css",
                 "scss",
@@ -80,8 +78,8 @@ return {
         }
     end,
 
-    ["lua_ls"] = function(servername)
-        local server = lspconfig[servername]
+    ["lua_ls"] = function()
+        local server = lspconfig.lua_ls
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
         table.insert(runtime_path, "lua/?/init.lua")
@@ -109,8 +107,8 @@ return {
         server.setup(lua_opts)
     end,
 
-    ["pyright"] = function(servername)
-        local server = lspconfig[servername]
+    ["pyright"] = function()
+        local server = lspconfig.pyright
 
         local py_opts = vim.tbl_deep_extend(
             'force',
@@ -127,8 +125,8 @@ return {
         server.setup(py_opts)
     end,
 
-    ["rust_analyzer"] = function(servername)
-        local server = lspconfig[servername]
+    ["rust_analyzer"] = function()
+        local server = lspconfig.rust_analyzer
         local ok, rust_tools = pcall(require, 'rust-tools')
         if not ok then
             vim.notify('Failed to find rust tools installed')
