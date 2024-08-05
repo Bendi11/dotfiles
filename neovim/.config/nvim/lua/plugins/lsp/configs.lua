@@ -9,9 +9,11 @@ if not lspconfig_ok then
     return {}
 end
 
+local lsputil = require('lspconfig/util')
+
 --Setup keymaps for the buffer that a language server is attached to
 local opts = {
-    on_attach = function(_, bufnr) require('plugins.lsp.keys').set_buf_keymap(bufnr) end,
+    on_attach = require('plugins.lsp.keys').default_on_attach,
     capabilities = cmp and cmp.default_capabilities() or nil,
 }
 
@@ -25,6 +27,25 @@ return {
 
         lspconfig[servername].setup(opts)
     end,
+    ["verible"] = function ()
+        local root_pattern = lsputil.root_pattern("CMakeLists.txt", "verible.filelist")
+
+        local verible_opts = vim.tbl_deep_extend(
+            'force',
+            opts,
+            {
+                root_dir = function(filename)
+                    local path = lsputil.path.is_absolute(filename) and filename
+                    or lsputil.path.join(vim.loop.cwd(), filename)
+
+                    return root_pattern(path) or lsputil.find_git_ancestor(filename) or lsputil.path.dirname(filename)
+                end,
+            }
+        )
+
+        lspconfig.verible.setup(verible_opts)
+    end,
+
     ["arduino_language_server"] = function()
         local server = lspconfig.arduino_language_server
         local FQBN = "arduino:avr:nano"
@@ -127,10 +148,6 @@ return {
 
     ["rust_analyzer"] = function()
         local server = lspconfig.rust_analyzer
-        local ok, rust_tools = pcall(require, 'rust-tools')
-        if not ok then
-            vim.notify('Failed to find rust tools installed')
-        end
 
         local rustopts = {
             server = vim.tbl_deep_extend("force", opts, {
@@ -142,28 +159,9 @@ return {
                     opts.on_attach(client, bufnr)
                 end
             }),
-            tools = {
-                autoSetHints = true,
-                inlay_hints = {
-                    show_parameter_hints = false,
-                    other_hints_prefix = '⇒ ',
-                    max_len_align = true,
-                    max_len_align_padding = 3,
-                },
-                dap = {
-                    adapter = {
-                        type = 'executable',
-                        command = require'plugins.lsp.glob'.MASON_INSTALL_DIR  .. '/codelldb',
-                        name = 'lldb'
-                    }
-                }
-            },
+            
         }
 
-        if not ok then
-            server:setup(rustopts.server)
-        else
-            rust_tools.setup(rustopts)
-        end
+        
     end
 }
