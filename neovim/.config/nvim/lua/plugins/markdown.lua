@@ -1,10 +1,5 @@
 return {
     {
-        'renerocksai/calendar-vim',
-        cmd = { 'CalendarVR', 'CalendarT', 'CalendarH', 'Calendar' },
-    },
-
-    {
         'lervag/vimtex',
         lazy = false,
         config = function ()
@@ -22,6 +17,28 @@ return {
     },
 
     {
+        "zk-org/zk-nvim",
+        config = function()
+            require("zk").setup {
+                picker = 'telescope',
+            }
+        end
+    },
+
+    {
+        "toppair/peek.nvim",
+        event = { "VeryLazy" },
+        build = "deno task --quiet build:fast",
+        config = function()
+            require("peek").setup {
+                app = 'webview'
+            }
+            vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+            vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+        end,
+    },
+
+    --[[{
         'renerocksai/telekasten.nvim',
         dependencies = {
             'nvim-telescope/telescope.nvim',
@@ -44,7 +61,7 @@ return {
                 hi link CalNavi CalRuler
                 hi link tkTagSep WinSeparator
                 hi link tkTag SignColumn
-            ]])
+            \]\])
 
             local dir = vim.fn.expand('~/zettelkasten')
             local template = dir .. '/template'
@@ -69,5 +86,5 @@ return {
                 plug_into_calendar = true,
             }
         end
-    },
+    },]]
 }

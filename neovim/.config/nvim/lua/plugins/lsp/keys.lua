@@ -24,7 +24,7 @@ end
 M.default_on_attach = function (client, bufnr)
     M.set_buf_keymap(bufnr)
     if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        --vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
 end
 
