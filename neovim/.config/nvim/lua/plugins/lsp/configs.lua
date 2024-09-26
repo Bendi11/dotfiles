@@ -19,14 +19,14 @@ local opts = {
 
 local lspconfutil = require 'lspconfig/util'
 local root_pattern = lspconfutil.root_pattern("veridian.yml", ".git")
-require('lspconfig').veridian.setup {
+--[[require('lspconfig').veridian.setup {
     cmd = { 'veridian' },
     root_dir = function(fname)
         local filename = lspconfutil.path.is_absolute(fname) and fname
         or lspconfutil.path.join(vim.loop.cwd(), fname)
         return root_pattern(filename) or lspconfutil.path.dirname(filename)
     end;
-}
+}]]
 
 return {
     function (servername)
@@ -157,21 +157,6 @@ return {
     end,
 
     ["rust_analyzer"] = function()
-        local server = lspconfig.rust_analyzer
-
-        local rustopts = {
-            server = vim.tbl_deep_extend("force", opts, {
-                on_attach = function(client, bufnr)
-                    if ok then
-                        vim.keymap.set('n', '<C-k>', rust_tools.hover_actions.hover_actions, { buffer = bufnr, noremap = true })
-                    end
-
-                    opts.on_attach(client, bufnr)
-                end
-            }),
-            
-        }
-
-        
+        vim.notify("rust_analyzer Mason setup called, but rustaceanvim already installed", vim.log.levels.ERROR)
     end
 }

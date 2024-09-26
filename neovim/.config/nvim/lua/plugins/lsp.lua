@@ -12,12 +12,28 @@ return {
         version = '^5',
         lazy = false,
         config = function ()
+            local executors = require('rustaceanvim.executors')
+
             local keys = require('plugins.lsp.keys')
+
             vim.g.rustaceanvim = {
                 server = {
                     on_attach = keys.default_on_attach,
+                    default_settings = {
+                        ['rust-analyzer'] = {
+                            cargo = {
+                                buildScripts = {
+                                    enable = true,
+                                },
+                                procMacro = {
+                                    enable = true,
+                                }
+                            }
+                        }
+                    }
                 },
                 tools = {
+                    executor = executors.toggleterm,
                     autoSetHints = true,
                     inlay_hints = {
                         show_parameter_hints = false,
