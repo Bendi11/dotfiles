@@ -214,7 +214,6 @@ mode "resize" {
 # Autostart applications
 exec --no-startup-id dunst
 exec --no-startup-id orbitbg
-exec --no-startup-id nm-applet
 exec --no-startup-id udiskie
 
 exec --no-startup-id xinput set-prop 9 319 1

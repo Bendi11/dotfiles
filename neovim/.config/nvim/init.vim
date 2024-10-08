@@ -49,7 +49,6 @@ filetype plugin indent on "Enable automatic indenting based on file type
 autocmd BufWritePre * set fileformat=unix
 "Control + n to open / close the file tree
 nnoremap <silent> <C-n> :NvimTreeToggle<CR>
-nnoremap <silent> xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 nnoremap <silent> <C-Space> @=(foldlevel('.')?'zA':"\<C-Space>")<CR>
 vnoremap <Space> zf

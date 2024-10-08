@@ -19,6 +19,17 @@ return {
     {
         "zk-org/zk-nvim",
         config = function()
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = {'markdown'},
+                callback = function()
+                    vim.keymap.set(
+                        'n',
+                        '<CR>',
+                        vim.lsp.buf.definition,
+                        {noremap = true, silent = true}
+                    )
+                end
+            })
             require("zk").setup {
                 picker = 'telescope',
             }

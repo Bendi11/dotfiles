@@ -69,7 +69,6 @@ return {
             },
             hint_prefix = "",
             transparency = 30,
-            always_trigger = true,
         },
         config = function(_, opts) require'lsp_signature'.setup(opts) end
     }
