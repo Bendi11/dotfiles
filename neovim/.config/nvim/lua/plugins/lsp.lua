@@ -6,6 +6,7 @@ return {
 
     require('plugins.lsp.mason'),
 
+    'mfussenegger/nvim-jdtls',
 
     {
         'mrcjkb/rustaceanvim',
