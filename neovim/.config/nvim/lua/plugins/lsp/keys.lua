@@ -40,6 +40,24 @@ M.default_on_attach = function (client, bufnr)
     end
 end
 
+M.setup_keymaps = function ()
+    vim.api.nvim_create_autocmd(
+        'LspAttach',
+        {
+            callback = function(ev)
+                local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                if not client then
+                    return
+                end
+
+                for bufnr, _ in pairs(client.attached_buffers) do
+                    M.default_on_attach(client, bufnr)
+                end
+            end,
+        }
+    )
+end
+
 
 
 return M

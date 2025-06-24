@@ -11,6 +11,8 @@ return {
         },
         config = function()
             require('plugins.lsp.configs')
+            local keys = require('plugins.lsp.keys')
+            keys.setup_keymaps()
 
             require("mason").setup{
                 install_root_dir = require('plugins.lsp.glob').MASON_INSTALL_DIR

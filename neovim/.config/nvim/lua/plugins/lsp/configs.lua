@@ -5,17 +5,17 @@ if not lspconfig_ok then
 end
 
 local lsputil = require('lspconfig/util')
-local keys = require('plugins.lsp.keys')
+
 
 local cmp_ok, cmp = pcall(require, 'cmp_nvim_lsp')
 if not cmp_ok then
     vim.notify('cmp-nvim-lsp not available, completion keymaps will not be set', vim.log.levels.ERROR)
 end
 
+
 vim.lsp.config(
     '*',
     {
-        on_attach = keys.default_on_attach,
         capabilities = cmp and cmp.default_capabilities() or nil,
     }
 )
