@@ -27,6 +27,16 @@ return {
         end
     },
 
+    {
+        'nvim-flutter/flutter-tools.nvim',
+        lazy = false,
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'stevearc/dressing.nvim'
+        },
+        config = true
+    }
+
     --[[use {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         --after = "neovim/nvim-lspconfig",

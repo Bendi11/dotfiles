@@ -13,7 +13,7 @@ return {
             end
             local alpha = require('alpha')
             local dashboard = require('alpha.themes.dashboard')
-    
+
             dashboard.section.header.val = {
                 "   ▐▀▄      ▄▀▌   ▄▄▄▄▄▄▄             ",
                 "   ▌▒▒▀▄▄▄▄▀▒▒▐▄▀▀▒██▒██▒▀▀▄          ",
@@ -31,7 +31,7 @@ return {
                 "  ▐▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▌      ",
                 "    ▀▄▄▀▀▀▀▄▄▀▀▀▀▀▀▄▄▀▀▀▀▀▀▄▄▀        ",
             }
-            
+
             dashboard.section.footer.val = footer()
             dashboard.section.buttons.val = {
                 dashboard.button(" t o", "  Recently opened files", ":Telescope oldfiles<CR>"),
@@ -39,9 +39,10 @@ return {
                 dashboard.button(" t F", "  File browser", ":Telescope file_browser<CR>"),
                 dashboard.button(" c n", "  New file", ":ene <BAR> startinsert<CR>"),
                 dashboard.button(" c c", "  Update plugins", ":Lazy update<CR>"),
+                dashboard.button(" c v", "  Update LSP servers", ":Mason"),
                 dashboard.button("q", "  Quit", "<Cmd>qa<CR>"),
             }
-    
+
             alpha.setup(dashboard.opts)
         end
     }

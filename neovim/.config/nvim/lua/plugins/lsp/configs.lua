@@ -104,6 +104,7 @@ vim.lsp.config(
     'pyright',
     {
         settings = {
+
             python = {
                 pythonPath = "/usr/bin/python3"
             }
