@@ -39,7 +39,7 @@ return {
                 dashboard.button(" t F", "  File browser", ":Telescope file_browser<CR>"),
                 dashboard.button(" c n", "  New file", ":ene <BAR> startinsert<CR>"),
                 dashboard.button(" c c", "  Update plugins", ":Lazy update<CR>"),
-                dashboard.button(" c v", "  Update LSP servers", ":Mason"),
+                dashboard.button(" c v", "  Update LSP servers", ":Mason<CR>"),
                 dashboard.button("q", "  Quit", "<Cmd>qa<CR>"),
             }
 
