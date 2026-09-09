@@ -1,30 +1,7 @@
 return {
     --Helper to automatically download and install LSP servers
     {
-        'williamboman/mason.nvim',
-        dependencies = {
-            'williamboman/mason-lspconfig.nvim'
-        },
-        after = {
-            'nvim-lspconfig',
-            'cmp-nvim-lsp',
-        },
-        config = function()
-            require('plugins.lsp.configs')
-            local keys = require('plugins.lsp.keys')
-            keys.setup_keymaps()
 
-            require("mason").setup{
-                install_root_dir = require('plugins.lsp.glob').MASON_INSTALL_DIR
-            }
-
-            require('mason-lspconfig').setup {
-                ensure_installed = {
-                    'lua_ls',
-                    'clangd',
-                },
-            }
-        end
     },
 
     {

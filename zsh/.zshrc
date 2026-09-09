@@ -21,3 +21,4 @@ export PATH="$PATH:$HOME/.go/bin"
 
 export SpaceEngineersBin="$HOME/dev/pkg/spaceengineers"
 export SpaceEngineersAppData="$HOME/dev/pkg/spaceengineers"
+export PLANTUML_JAR="/usr/share/java/plantuml/plantuml.jar"

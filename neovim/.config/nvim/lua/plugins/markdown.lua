@@ -9,6 +9,18 @@ return {
     },
 
     {
+
+        "charlesnicholson/plantuml.nvim",
+        opts = {
+            auto_start = true,
+            auto_update = true,
+            http_port = 8764,
+            plantuml_server_url = "https://www.plantuml.com/plantuml",
+            auto_launch_browser = "always",
+        }
+    },
+
+    {
         'jbyuki/nabla.nvim',
         config = function ()
         local opts = {noremap = true, silent = true}
