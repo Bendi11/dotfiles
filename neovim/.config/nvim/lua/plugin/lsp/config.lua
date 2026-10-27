@@ -12,8 +12,6 @@ if not cmp_ok then
     vim.notify('cmp-nvim-lsp not available, completion keymaps will not be set', vim.log.levels.ERROR)
 end
 
-capabilities_all = nil
-
 vim.lsp.config(
     '*',
     {

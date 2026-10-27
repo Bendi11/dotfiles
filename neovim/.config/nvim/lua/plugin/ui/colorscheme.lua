@@ -3,4 +3,6 @@ vim.pack.add({
     'https://github.com/rktjmp/lush.nvim.git'
 })
 
-vim.cmd("colorscheme orbit")
+vim.pack.add({'https://github.com/sainnhe/everforest.git'})
+
+vim.cmd("colorscheme everforest")

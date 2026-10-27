@@ -16,6 +16,11 @@ vim.pack.add({
 local telescope = require('telescope')
 
 telescope.setup {
+    pickers = {
+        colorscheme = {
+            enable_preview = true,
+        },
+    },
     extensions = {
         ["ui-select"] = {
             require('telescope.themes').get_dropdown {
@@ -31,7 +36,7 @@ telescope.setup {
         ["file_browser"] = {
             theme = 'dropdown',
             hijack_netrw = true,
-        }
+        },
     }
 }
 
